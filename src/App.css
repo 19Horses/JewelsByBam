@@ -1,21 +1,59 @@
+canvas,
+body,
+html,
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+@font-face{
+  font-family: 'Pixels';
+  src: url('/dotmatrix.woff') format('woff');
+  font-display: swap;
+}
+
+.grillGallery{
+  justify-content: space-evenly;
+  justify-items: center;
+  align-content: space-evenly;
+  align-items: center;
+  height: 100%;
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 2em #e9eaffaa);
 }
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+.descriptor {
+  transition: 400ms all;
+  font-family: 'Pixels';
+  opacity: 0;
+  font-size: 1.5rem;
+}
+
+.entranceText {
+  position: fixed;
+  inset: 0;
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+}
+
+.descriptor:hover {
+  opacity: 100;
+}
+
+.model:hover ~ .descriptor{
+  opacity: 100;
 }
 
 @keyframes logo-spin {
@@ -39,4 +77,18 @@
 
 .read-the-docs {
   color: #888;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.temp-class {
+  
 }

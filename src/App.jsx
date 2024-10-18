@@ -1,14 +1,24 @@
-import { useState } from 'react'
-import Gallery from './gallery'
 import './App.css'
+import { BrowserRouter as Router, Link} from 'react-router-dom';
+import AnimatedRoutes from './AnimatedRoutes';
 
 function App() {
 
   return (
-    <>
-      <Gallery/>
-    </>
-  )
+    <Router>
+      <Link to="/">
+        <p className="fixed top-0 text-red-800 z-10">
+          JEWELS BY BAM
+        </p>
+      </Link>
+        <Link to="/items">
+        <p className="entranceText text-red-800 z-10">
+          LINK TO ITEMS
+        </p>
+      </Link>  
+      <AnimatedRoutes/>
+    </Router>
+  );
 }
 
-export default App
+export default App;
