@@ -1,6 +1,7 @@
 import { Splat, OrbitControls, } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { motion } from "framer-motion";
+import {  Link} from 'react-router-dom';
 
 export default function LandingPage() {
   return (
@@ -14,6 +15,11 @@ export default function LandingPage() {
         ease: "easeInOut"
       }}
     >
+      <Link to="/items">
+        <p className="entranceText text-red-800 z-10">
+          LINK TO ITEMS
+        </p>
+      </Link>  
       <Canvas>
         <OrbitControls 
           autoRotate
