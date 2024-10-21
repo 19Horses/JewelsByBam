@@ -6,11 +6,11 @@ function App() {
 
   return (
     <Router>
-      <Link to="/">
+      {/* <Link to="/">
         <p className="fixed top-0 text-red-800 z-10">
           JEWELS BY BAM
         </p>
-      </Link>
+      </Link> */}
       <AnimatedRoutes/>
     </Router>
   );

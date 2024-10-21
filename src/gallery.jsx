@@ -5,6 +5,7 @@ import { easing } from "maath";
 import PropTypes from "prop-types";
 import { useRef, useState } from "react";
 import * as THREE from "three";
+import { Flex, Box } from "@react-three/flex";
 
 FinalModelWithDescriptor.propTypes = {
   title: PropTypes.string,
@@ -34,9 +35,13 @@ function Model(props) {
   });
 
   return (
-    <mesh ref={mesh} geometry={nodes[props.name].geometry} {...props}>
-      <meshNormalMaterial />
-    </mesh>
+    <Flex justifyContent="center" alignItems="center">
+      <Box centerAnchor width="auto" height="auto">
+        <mesh ref={mesh} geometry={nodes[props.name].geometry} {...props}>
+          <meshNormalMaterial />
+        </mesh>
+      </Box>
+    </Flex>
   );
 }
 
@@ -46,9 +51,9 @@ function FinalModelWithDescriptor({ title, description, src, name }) {
     <div
       onMouseEnter={() => setIsMouseOver(true)}
       onMouseLeave={() => setIsMouseOver(false)}
-      className="temp-class flex h-full cursor-pointer"
+      className="flex cursor-pointer h-auto"
     >
-      <Canvas className="model logo h-full" camera={{ position: [0, 0.1, 3] }}>
+      <Canvas className="model logo h-full" camera={{ position: [.3, .1, 3] }}>
         <ambientLight />
         <directionalLight position={[10, 10, 10]} />
         <Model src={src} name={name} isMouseOver={isMouseOver} />
@@ -63,56 +68,93 @@ const models = [
     src: "./suzanne.glb",
     name: "Suzanne",
     title: "SOLID CAP WITH WIRE GATE INSPIRATION",
+    type: "g"
   },
   {
     src: "./pumpkin_scan.glb",
     name: "Pumpkin",
     title: "SUPA SHINY STRETCHY STAR",
+    type: "g"
   },
   {
-    src: "./suzanne.glb",
-    name: "Suzanne",
+    src: "./29_04_2024.glb",
+    name: "mesh_0",
     title: "SPIRALLY BOW for LAYAL",
+    type: "g"
   },
   {
     src: "./suzanne.glb",
     name: "Suzanne",
     title: "DOUBLE ANKH CAP for TYLA",
+    type: "g"
   },
   {
     src: "./suzanne.glb",
     name: "Suzanne",
     title: "SOLID AND WINDOW for DAVE",
+    type: "g"
   },
   {
     src: "./suzanne.glb",
     name: "Suzanne",
     title: "CLASSIC WINDOW for ORLA",
+    type: "g"
   },
   {
     src: "./suzanne.glb",
     name: "Suzanne",
     title: "DOUBLE ABSTRACT CAP for NICK",
+    type: "g"
   },
   {
     src: "./suzanne.glb",
     name: "Suzanne",
     title: "LITTLE BOW RING NO.2",
+    type: "r"
+  },
+  {
+    src: "./suzanne.glb",
+    name: "Suzanne",
+    title: "LITTLE BOW RING NO.2",
+    type: "r"
+  },
+  {
+    src: "./suzanne.glb",
+    name: "Suzanne",
+    title: "LITTLE BOW RING NO.2",
+    type: "r"
+  },
+  {
+    src: "./suzanne.glb",
+    name: "Suzanne",
+    title: "LITTLE BOW RING NO.2",
+    type: "r"
+  },
+  {
+    src: "./suzanne.glb",
+    name: "Suzanne",
+    title: "LITTLE BOW RING NO.2",
+    type: "r"
+  },
+  {
+    src: "./suzanne.glb",
+    name: "Suzanne",
+    title: "LITTLE BOW RING NO.2",
+    type: "r"
+  },
+  {
+    src: "./suzanne.glb",
+    name: "Suzanne",
+    title: "LITTLE BOW RING NO.2",
+    type: "r"
   },
 ];
 
 export default function Gallery() {
   return (
     <>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{
-          staggerChildren: 1,
-          delayChildren: 1,
-          ease: "easeInOut",
-          duration: 1,
-        }}
+    
+      <div
         className="grid grid-cols-4 grid-rows-2 grillGallery"
       >
       
@@ -127,7 +169,7 @@ export default function Gallery() {
           );
         })}
         
-      </motion.div>
+      </div>
     </>
   );
 }
