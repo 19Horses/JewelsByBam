@@ -11,11 +11,6 @@ function App() {
           JEWELS BY BAM
         </p>
       </Link>
-        <Link to="/items">
-        <p className="entranceText text-red-800 z-10">
-          LINK TO ITEMS
-        </p>
-      </Link>  
       <AnimatedRoutes/>
     </Router>
   );

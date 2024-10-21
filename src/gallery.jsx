@@ -115,6 +115,7 @@ export default function Gallery() {
         }}
         className="grid grid-cols-4 grid-rows-2 grillGallery"
       >
+      
         {models.map((model) => {
           return (
             <FinalModelWithDescriptor
@@ -125,6 +126,7 @@ export default function Gallery() {
             />
           );
         })}
+        
       </motion.div>
     </>
   );
