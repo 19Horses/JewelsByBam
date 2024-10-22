@@ -3,7 +3,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { motion } from "framer-motion";
 import { easing } from "maath";
 import PropTypes from "prop-types";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 
 FinalModelWithDescriptor.propTypes = {
@@ -40,13 +40,33 @@ function Model(props) {
   );
 }
 
-function FinalModelWithDescriptor({ title, description, src, name }) {
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      type: "easeInOut",
+      staggerChildren: 0.1,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+  },
+};
+
+function FinalModelWithDescriptor({ title, src, name }) {
   const [isMouseOver, setIsMouseOver] = useState(false);
   return (
-    <div
+    <motion.div
+      variants={item}
       onMouseEnter={() => setIsMouseOver(true)}
       onMouseLeave={() => setIsMouseOver(false)}
-      className="temp-class flex h-full cursor-pointer"
+      className="flex h-full cursor-pointer"
     >
       <Canvas className="model logo h-full" camera={{ position: [0, 0.1, 3] }}>
         <ambientLight />
@@ -54,7 +74,7 @@ function FinalModelWithDescriptor({ title, description, src, name }) {
         <Model src={src} name={name} isMouseOver={isMouseOver} />
       </Canvas>
       <p className="descriptor entranceText">{title}</p>
-    </div>
+    </motion.div>
   );
 }
 
@@ -105,17 +125,11 @@ export default function Gallery() {
   return (
     <>
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{
-          staggerChildren: 1,
-          delayChildren: 1,
-          ease: "easeInOut",
-          duration: 1,
-        }}
+        initial={"hidden"}
+        animate={"show"}
+        variants={container}
         className="grid grid-cols-4 grid-rows-2 grillGallery"
       >
-      
         {models.map((model) => {
           return (
             <FinalModelWithDescriptor
@@ -126,7 +140,6 @@ export default function Gallery() {
             />
           );
         })}
-        
       </motion.div>
     </>
   );
