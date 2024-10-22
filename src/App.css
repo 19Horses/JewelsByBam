@@ -8,13 +8,13 @@ html,
   margin: 0;
 }
 
-@font-face{
-  font-family: 'Pixels';
-  src: url('/dotmatrix.woff') format('woff');
+@font-face {
+  font-family: "Pixels";
+  src: url("/dotmatrix.woff") format("woff");
   font-display: swap;
 }
 
-.grillGallery{
+.grillGallery {
   justify-content: space-evenly;
   justify-items: center;
   align-content: space-evenly;
@@ -35,9 +35,16 @@ html,
 
 .descriptor {
   transition: 400ms all;
-  font-family: 'Pixels';
+  font-family: "Pixels";
   opacity: 0;
   font-size: 1.5rem;
+}
+
+.mobile-descriptor {
+  transition: 400ms all;
+  font-family: "Pixels";
+  font-size: 1.2rem;
+  text-align: center;
 }
 
 .entranceText {
@@ -52,7 +59,7 @@ html,
   opacity: 100;
 }
 
-.model:hover ~ .descriptor{
+.model:hover ~ .descriptor {
   opacity: 100;
 }
 
@@ -90,5 +97,4 @@ html,
 }
 
 .temp-class {
-  
 }
