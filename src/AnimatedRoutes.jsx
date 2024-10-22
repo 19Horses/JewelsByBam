@@ -1,8 +1,8 @@
 import { AnimatePresence } from "framer-motion";
 import { isMobile } from "react-device-detect";
 import { Route, Routes, useLocation } from "react-router-dom";
-import Gallery from "./gallery";
-import MobileGallery from "./MobileGallery";
+import DesktopGallery from "./gallery/DesktopGallery";
+import MobileGallery from "./gallery/MobileGallery";
 import LandingPage from "./landingPage";
 
 function AnimatedRoutes() {
@@ -14,7 +14,7 @@ function AnimatedRoutes() {
         <Route path="/" exact element={<LandingPage />} />
         <Route
           path="/items"
-          element={isMobile ? <MobileGallery /> : <Gallery />}
+          element={isMobile ? <MobileGallery /> : <DesktopGallery />}
         />
       </Routes>
     </AnimatePresence>
