@@ -6,11 +6,11 @@ import PropTypes from "prop-types";
 import { useRef, useState } from "react";
 import * as THREE from "three";
 import { container, item } from "./framerVariants";
-import items from "./items.json";
+import items from "../items.json";
 import { Link } from "react-router-dom";
 
 FinalModelWithDescriptor.propTypes = {
-  title: PropTypes.title,
+  title: PropTypes.string,
   src: PropTypes.string,
   name: PropTypes.string,
   material: PropTypes.string,
@@ -28,7 +28,6 @@ function Model(props) {
   const mesh = useRef();
   const { nodes, materials } = useGLTF(props.src);
   const [dummy] = useState(() => new THREE.Object3D());
-  console.log(props.material);
 
   useFrame((state, dt) => {
     if (props.isMouseOver) {
@@ -50,7 +49,7 @@ function Model(props) {
   );
 }
 
-function FinalModelWithDescriptor({ title, src, name, id, material }) {
+function FinalModelWithDescriptor({ title, src, name, material }) {
   const [isMouseOver, setIsMouseOver] = useState(false);
   return (
     <motion.div
