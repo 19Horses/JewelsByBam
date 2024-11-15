@@ -89,6 +89,7 @@ html,
   }
 }
 
-.temp-class {
-  
+.jsonToReact {
+  white-space: pre-line;  
+vertical-align: bottom;
 }
