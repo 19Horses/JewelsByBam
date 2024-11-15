@@ -3,12 +3,13 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { motion } from "framer-motion";
 import { easing } from "maath";
 import PropTypes from "prop-types";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import * as THREE from "three";
+import { container, item } from "./framerVariants";
+import { models } from "./models";
 
 FinalModelWithDescriptor.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
+  title: PropTypes.title,
   src: PropTypes.string,
   name: PropTypes.string,
 };
@@ -40,25 +41,6 @@ function Model(props) {
   );
 }
 
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      type: "easeInOut",
-      staggerChildren: 0.1,
-      delayChildren: 0.3,
-    },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-  },
-};
-
 function FinalModelWithDescriptor({ title, src, name }) {
   const [isMouseOver, setIsMouseOver] = useState(false);
   return (
@@ -78,50 +60,7 @@ function FinalModelWithDescriptor({ title, src, name }) {
   );
 }
 
-const models = [
-  {
-    src: "./suzanne.glb",
-    name: "Suzanne",
-    title: "SOLID CAP WITH WIRE GATE INSPIRATION",
-  },
-  {
-    src: "./pumpkin_scan.glb",
-    name: "Pumpkin",
-    title: "SUPA SHINY STRETCHY STAR",
-  },
-  {
-    src: "./suzanne.glb",
-    name: "Suzanne",
-    title: "SPIRALLY BOW for LAYAL",
-  },
-  {
-    src: "./suzanne.glb",
-    name: "Suzanne",
-    title: "DOUBLE ANKH CAP for TYLA",
-  },
-  {
-    src: "./suzanne.glb",
-    name: "Suzanne",
-    title: "SOLID AND WINDOW for DAVE",
-  },
-  {
-    src: "./suzanne.glb",
-    name: "Suzanne",
-    title: "CLASSIC WINDOW for ORLA",
-  },
-  {
-    src: "./suzanne.glb",
-    name: "Suzanne",
-    title: "DOUBLE ABSTRACT CAP for NICK",
-  },
-  {
-    src: "./suzanne.glb",
-    name: "Suzanne",
-    title: "LITTLE BOW RING NO.2",
-  },
-];
-
-export default function Gallery() {
+export default function DesktopGallery() {
   return (
     <>
       <motion.div
