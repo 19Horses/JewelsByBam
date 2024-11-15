@@ -8,11 +8,11 @@ import DesktopGallery from "./gallery/DesktopGallery";
 
 function App() {
   return (
-    <Router>
+    <Router basename={location.pathname}>
       <Link to="/">
         <p className="fixed top-0 text-red-800 z-10">JEWELS BY BAM</p>
       </Link>
-      <Routes key={location.pathname}>
+      <Routes>
         <Route path="/" exact element={<LandingPage />} />
         <Route
           path="/items"
