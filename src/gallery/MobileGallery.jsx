@@ -24,15 +24,9 @@ Model.propTypes = {
 function Model(props) {
   const mesh = useRef();
   const { nodes } = useGLTF(props.src);
-  const [dummy] = useState(() => new THREE.Object3D());
 
-  useFrame((state, dt) => {
-    if (props.isMouseOver) {
-      dummy.lookAt(state.pointer.x, state.pointer.y, 1);
-    } else {
-      dummy.lookAt(0, 0, 1);
-    }
-    easing.dampQ(mesh.current.quaternion, dummy.quaternion, 0.15, dt);
+  useFrame(() => {
+    mesh.current.rotation.y += 0.01;
   });
 
   return (
