@@ -1,10 +1,8 @@
+import { Link, Route, HashRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
-import { HashRouter as Router, Link, Route, Routes } from "react-router-dom";
-import LandingPage from "./landingPage";
 import Details from "./details";
-import { isMobile } from "react-device-detect";
-import MobileGallery from "./gallery/MobileGallery";
-import DesktopGallery from "./gallery/DesktopGallery";
+import Gallery from "./gallery";
+import LandingPage from "./landingPage";
 
 function App() {
   return (
@@ -12,12 +10,9 @@ function App() {
       <Link to="/">
         <p className="fixed top-0 text-red-800 z-10">JEWELS BY BAM</p>
       </Link>
-      <Routes>
+      <Routes key={location.pathname}>
         <Route path="/" exact element={<LandingPage />} />
-        <Route
-          path="/items"
-          element={isMobile ? <MobileGallery /> : <DesktopGallery />}
-        />
+        <Route path="/items" element={<Gallery />} />
         <Route path="details/:urlName" element={<Details />} />
       </Routes>
     </Router>

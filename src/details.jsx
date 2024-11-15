@@ -17,7 +17,6 @@ Model.propTypes = {
 };
 
 FinalModelWithDescriptor.propTypes = {
-  title: PropTypes.string,
   description: PropTypes.string,
   src: PropTypes.string,
   name: PropTypes.string,
@@ -75,7 +74,7 @@ function Model(props) {
   );
 }
 
-function FinalModelWithDescriptor({ title, src, name, id, material }) {
+function FinalModelWithDescriptor({ src, name, material }) {
   const [isMouseOver, setIsMouseOver] = useState(false);
   return (
     <motion.div
