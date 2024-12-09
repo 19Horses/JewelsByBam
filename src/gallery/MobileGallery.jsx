@@ -1,13 +1,12 @@
 import { useGLTF } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { motion } from "framer-motion";
-import { easing } from "maath";
 import PropTypes from "prop-types";
 import { useRef, useState } from "react";
 import { useSwipeable } from "react-swipeable";
-import * as THREE from "three";
-import { models } from "./models";
 import { container, item } from "./framerVariants";
+import { models } from "./models";
+import items from "../items.json";
 
 FinalModelWithDescriptor.propTypes = {
   src: PropTypes.string,
@@ -86,7 +85,7 @@ export default function MobileGallery() {
         transform: `translateY(-${currentIndex * 100}vh)`,
       }}
     >
-      {models.map((model) => {
+      {items.map((model) => {
         return (
           <FinalModelWithDescriptor
             key={model.title}

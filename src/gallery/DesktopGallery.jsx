@@ -6,23 +6,27 @@ import PropTypes from "prop-types";
 import { useRef, useState } from "react";
 import * as THREE from "three";
 import { container, item } from "./framerVariants";
-import { models } from "./models";
+import items from "../items.json";
+import { Link } from "react-router-dom";
 
 FinalModelWithDescriptor.propTypes = {
-  title: PropTypes.title,
+  title: PropTypes.string,
   src: PropTypes.string,
   name: PropTypes.string,
+  material: PropTypes.string,
+  urlName: PropTypes.string,
 };
 
 Model.propTypes = {
   src: PropTypes.string,
   name: PropTypes.string,
+  material: PropTypes.string,
   isMouseOver: PropTypes.bool,
 };
 
 function Model(props) {
   const mesh = useRef();
-  const { nodes } = useGLTF(props.src);
+  const { nodes, materials } = useGLTF(props.src);
   const [dummy] = useState(() => new THREE.Object3D());
 
   useFrame((state, dt) => {
@@ -35,13 +39,17 @@ function Model(props) {
   });
 
   return (
-    <mesh ref={mesh} geometry={nodes[props.name].geometry} {...props}>
-      <meshNormalMaterial />
-    </mesh>
+    <mesh
+      ref={mesh}
+      castShadow
+      receiveShadow
+      geometry={nodes[props.name].geometry}
+      material={materials[props.material]}
+    ></mesh>
   );
 }
 
-function FinalModelWithDescriptor({ title, src, name }) {
+function FinalModelWithDescriptor({ title, src, name, material }) {
   const [isMouseOver, setIsMouseOver] = useState(false);
   return (
     <motion.div
@@ -53,7 +61,12 @@ function FinalModelWithDescriptor({ title, src, name }) {
       <Canvas className="model logo h-full" camera={{ position: [0, 0.1, 3] }}>
         <ambientLight />
         <directionalLight position={[10, 10, 10]} />
-        <Model src={src} name={name} isMouseOver={isMouseOver} />
+        <Model
+          src={src}
+          material={material}
+          name={name}
+          isMouseOver={isMouseOver}
+        />
       </Canvas>
       <p className="descriptor entranceText">{title}</p>
     </motion.div>
@@ -67,16 +80,23 @@ export default function DesktopGallery() {
         initial={"hidden"}
         animate={"show"}
         variants={container}
-        className="grid grid-cols-4 grid-rows-2 grillGallery"
+        className={`grid grid-cols-4 grid-rows-2 grillGallery `}
       >
-        {models.map((model) => {
+        {items.map((model) => {
           return (
-            <FinalModelWithDescriptor
-              key={model.title}
-              title={model.title}
-              name={model.name}
-              src={model.src}
-            />
+            <div key={model.title}>
+              <Link to={`/details/${model.urlName}`}>
+                {
+                  <FinalModelWithDescriptor
+                    key={model.title}
+                    title={model.title}
+                    name={model.name}
+                    src={model.src}
+                    material={model.material}
+                  />
+                }
+              </Link>
+            </div>
           );
         })}
       </motion.div>
