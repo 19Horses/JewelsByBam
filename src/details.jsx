@@ -136,7 +136,7 @@ export default function Details() {
                 title={item.title}
                 name={item.name}
                 material={item.material}
-                src={item.src.slice(1)}
+                src={item.src}
               />
             )}
           </div>
