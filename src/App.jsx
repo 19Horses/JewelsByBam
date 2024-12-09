@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Link, Route, Routes } from "react-router-dom";
 import LandingPage from "./landingPage";
 import Details from "./details";
 import { isMobile } from "react-device-detect";
@@ -8,7 +8,7 @@ import DesktopGallery from "./gallery/DesktopGallery";
 
 function App() {
   return (
-    <Router basename={location.pathname}>
+    <Router>
       <Link to="/">
         <p className="fixed top-0 text-red-800 z-10">JEWELS BY BAM</p>
       </Link>
