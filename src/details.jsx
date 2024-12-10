@@ -1,11 +1,11 @@
-import { useGLTF } from "@react-three/drei";
+import { Bounds, useGLTF } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { motion } from "framer-motion";
 import { easing } from "maath";
 import PropTypes from "prop-types";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
+import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { Link, useParams } from "react-router-dom";
-import { InstagramEmbed } from "react-social-media-embed";
 import * as THREE from "three";
 import items from "./items.json";
 
@@ -14,6 +14,7 @@ Model.propTypes = {
   name: PropTypes.string,
   material: PropTypes.string,
   isMouseOver: PropTypes.bool,
+  zoom: PropTypes.bool,
 };
 
 FinalModelWithDescriptor.propTypes = {
@@ -51,10 +52,16 @@ function findPrevArrayItemByID(array, id) {
 
 function Model(props) {
   const mesh = useRef();
-  const { nodes, materials } = useGLTF(props.src);
+  const { nodes } = useGLTF(props.src);
   const [dummy] = useState(() => new THREE.Object3D());
 
   useFrame((state, dt) => {
+    const step = 0.1;
+    state.camera.fov = THREE.MathUtils.lerp(
+      state.camera.fov,
+      props.zoom ? 30 : 50,
+      step
+    );
     if (props.isMouseOver) {
       dummy.lookAt(state.pointer.x, state.pointer.y, 1);
     } else {
@@ -69,29 +76,37 @@ function Model(props) {
       castShadow
       receiveShadow
       geometry={nodes[props.name].geometry}
-      material={materials[props.material]}
+      material={nodes[props.name].material}
     ></mesh>
   );
 }
 
 function FinalModelWithDescriptor({ src, name, material }) {
   const [isMouseOver, setIsMouseOver] = useState(false);
+  const [zoom, set] = useState(false);
   return (
     <motion.div
       variants={item}
+      onClick={() => {
+        set(true);
+        console.log("clicked!");
+      }}
       onMouseEnter={() => setIsMouseOver(true)}
       onMouseLeave={() => setIsMouseOver(false)}
       className="flex h-full cursor-pointer"
     >
-      <Canvas className="model logo h-full" camera={{ position: [0, 0.1, 3] }}>
-        <ambientLight />
-        <directionalLight position={[10, 10, 10]} />
-        <Model
-          src={src}
-          material={material}
-          name={name}
-          isMouseOver={isMouseOver}
-        />
+      <Canvas className="model logo h-full" camera={{ position: [0, 10, 3] }}>
+        <Bounds fit clip observe margin={1.2}>
+          <ambientLight />
+          <directionalLight position={[10, 10, 10]} />
+          <Model
+            src={src}
+            material={material}
+            name={name}
+            isMouseOver={isMouseOver}
+            zoom={zoom}
+          />
+        </Bounds>
       </Canvas>
     </motion.div>
   );
@@ -100,6 +115,7 @@ function FinalModelWithDescriptor({ src, name, material }) {
 export default function Details() {
   const { urlName } = useParams();
   const [item, setItem] = useState(null);
+  const [clickChecker, setClickChecker] = useState(0);
 
   useEffect(() => {
     const selectedItem = findArrayElementByTitle(items, urlName);
@@ -122,41 +138,57 @@ export default function Details() {
           height: "100vh",
         }}
       >
-        <div className=" w-11/12 grid grid-cols-3 jsonToReact">
-          <div>
-            {item.instagramVideo && (
-              <InstagramEmbed url={item.instagramVideo} width={328} />
-            )}
+        <div className=" w-11/12 relative jsonToReact">
+          <div className="w-4/5 items-center">
+            <Suspense fallback={null}>
+              {item.src && item.name && (
+                <div
+                  onClick={() => {
+                    setClickChecker(clickChecker + 1);
+                    console.log(clickChecker);
+                  }}
+                >
+                  <FinalModelWithDescriptor
+                    key={item.title}
+                    title={item.title}
+                    name={item.name}
+                    material={item.material}
+                    grillMaterial={item.grillMaterial}
+                    madeFor={item.madeFor}
+                    src={item.src}
+                  />
+                </div>
+              )}
+            </Suspense>
+
+            <div className="flex justify-center h-full w-full items-center cursor-pointer"></div>
           </div>
-          <div>
-            {item.src && item.name && (
-              <FinalModelWithDescriptor
-                key={item.title}
-                title={item.title}
-                name={item.name}
-                material={item.material}
-                src={item.src}
-              />
-            )}
-          </div>
-          <div>
-            <p>{item.description}</p>
+          <div className="fixed top-1/2 right-0 w-1/3 transform -translate-y-1/2">
+            <p className="uppercase italic text-sm">{item.grillMaterial}</p>
+            <section>
+              <div className="scrollDiv ">
+                <p className="uppercase mainFont scrollItem">{item.title}</p>
+                <p className="uppercase mainFont scrollItem">{item.title}</p>
+              </div>
+            </section>
+            <p className="text-l underline">{item.madeFor}</p>
+            <p className="font-bold capitalize text-xl">{item.description}</p>
           </div>
         </div>
       </div>
-      <div className="absolute flex justify-between top-1/2 w-[100%] px-5">
+      <div className="absolute flex justify-between top-1/2 w-[100%] px-5 -z-20">
         {findPrevArrayItemByID(items, item.id) != undefined && (
           <Link
             to={`/details/${findPrevArrayItemByID(items, item.id).urlName}`}
           >
-            PREV
+            <SlArrowLeft />
           </Link>
         )}
         {findNextArrayItemByID(items, item.id) != undefined && (
           <Link
             to={`/details/${findNextArrayItemByID(items, item.id).urlName}`}
           >
-            NEXT
+            <SlArrowRight />
           </Link>
         )}
       </div>
