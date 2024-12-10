@@ -1,83 +1,50 @@
 [
     {
       "id": 0,
-      "urlName": "monlkey",
-      "src": "./suzanne.glb",
-      "name": "Suzanne",
-      "material": "Suzanne",
-      "title": "SOLID CAP WITH WIRE GATE INSPIRATION",
-      "instagramVideo": "https://www.instagram.com/p/DBBk2AvufiK/?img_index=1"
-    , "description": "DOUBLE CAP: SOLID CAP alongside CAP with Wired Gate Inspiration \nUsing 925 Sterling Silver"
+      "urlName": "gateinspiredfronts",
+      "src": "./6_10_2024.glb",
+      "name": "mesh_0",
+      "material": "mesh_0",
+        "title": "GATE-INSPIRED FRONTS",
+        "instagramVideo": "https://www.instagram.com/p/C744G_LI8Mx/?img_index=1",
+        "grillMaterial": "925 Sterling Silver",
+        "madeFor": "for AKAY",
+        "description": "925 Sterling Silver gate-inspired fronts. Prompted by all the lovely gates I see when walking about."
     },
     {
-  "id": 1,
-  "urlName": "abie",
-      "src": "./pumpkin_scan.glb",
-      "name": "Pumpkin",
-      "material": "Pumpkin_mat",
-      "title": "SUPA SHINY STRETCHY STAR"
-      , "instagramVideo": "https://www.instagram.com/p/DA27rb-u0-h/?img_index=1"
-      , "description": "DOUBLE CAP: A 'SUPA SHINY STRETCHY STAR' DOUBLE WINDOW CAP \nUsing 925 Sterling Silver"  
-  },
+      "id": 1,
+      "urlName": "doubleankhcap",
+      "src": "./6_10_2024_2.glb",
+      "name": "mesh_0",
+      "material": "mesh_0",
+        "title": "DOUBLE ANKH CAP",
+        "grillMaterial": "9ct White Gold",
+        "instagramVideo": "https://www.instagram.com/p/DA27rb-u0-h/?img_index=1",
+        "description": "9ct White Gold double caps featuring an Ankh cutout, window cap and a solid cap.",
+        "madeFor": "for TYLA"
+    },
     {
-  "id": 2,
-  "urlName": "hello3",
-      "src": "./suzanne.glb",
-      "name": "Suzanne",
-      "material": "Suzanne",
-      "title": "SPIRALLY BOW for LAYAL"
-    , "instagramVideo": "https://www.instagram.com/p/DAvggPvuaDa/?img_index=2"
-  , "description": ""  
-  },
+      "id": 2,
+      "urlName": "supastretchystar",
+      "src": "./7_10_2024_2.glb",
+      "name": "mesh_0",
+      "material": "mesh_0",
+        "title": "SUPA STRETCHY STAR",
+        "grillMaterial": "925 Sterling Silver",
+        "instagramVideo": "https://www.instagram.com/p/DAvggPvuaDa/?img_index=2",
+        "description": "A ''Supa Stretchy Shiny Star'' combined double window cap. " ,
+        "madeFor": "for -"
+    },
     {
-  "id": 3,
-  "urlName": "hello4",
-      "src": "./suzanne.glb",
-      "name": "Suzanne",
-      "material": "Suzanne",
-      "title": "DOUBLE ANKH CAP for TYLA"
-      
-    , "instagramVideo": "https://www.instagram.com/p/DAtkJviudks/?img_index=1"
-  , "description": ""  
-  },
-    {
-  "id": 4,
-  "urlName": "hello5",
-      "src": "./suzanne.glb",
-      "material": "Suzanne",
-      "name": "Suzanne",
-      "title": "SOLID AND WINDOW for DAVE"
-    , "instagramVideo": "https://www.instagram.com/p/DAStPHWue_y/"
-  , "description": ""  
-  },
-    {
-  "id": 5,
-  "urlName": "hello6",
-      "src": "./suzanne.glb",
-      "name": "Suzanne",
-      "material": "Suzanne",
-      "title": "CLASSIC WINDOW for ORLA"
-    , "instagramVideo": "https://www.instagram.com/p/DAL5TYzoY0_/?img_index=2"
-  , "description": ""  
-  },
-    {
-  "id": 6,
-  "urlName": "hello7",
-      "src": "./suzanne.glb",
-      "name": "Suzanne",
-      "material": "Suzanne",
-      "title": "DOUBLE ABSTRACT CAP for NICK"
-    , "instagramVideo": "https://www.instagram.com/p/DAIp3iQOTzv/?img_index=2"
-  , "description": ""  
-  },
-    {
-  "id": 7,
-  "urlName": "hello8",
-      "src": "./suzanne.glb",
-      "name": "Suzanne",
-      "material": "Suzanne",
-      "title": "LITTLE BOW RING NO.2"
-    , "instagramVideo": "https://www.instagram.com/p/DAEIyTCI_35/?img_index=2"
-  , "description": ""  
+      "id": 3,
+      "urlName": "babybow",
+      "src": "./7_10_2024.glb",
+      "name": "mesh_0",
+      "material": "mesh_0",
+        "title": "BABY BOW",
+        "grillMaterial": "925 Sterling Silver",
+        "video": "./spiralBowVid.mp4",
+        "description": "925 Sterling Silver ''Baby Bow'' fronts.",
+        "madeFor": "for ME!"
   }
   ]
