@@ -1,4 +1,4 @@
-import { Bounds, useBounds, useGLTF } from "@react-three/drei";
+import { useGLTF, Bounds, useBounds } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { motion } from "framer-motion";
 import { easing } from "maath";
@@ -68,7 +68,12 @@ function FinalModelWithDescriptor({ title, src, name }) {
           <SelectToZoom>
             <ambientLight />
             <directionalLight position={[10, 10, 10]} />
-            <Model src={src} name={name} isMouseOver={isMouseOver} />
+            <Model
+              src={src}
+              material={material}
+              name={name}
+              isMouseOver={isMouseOver}
+            />
           </SelectToZoom>
         </Bounds>
       </Canvas>
@@ -107,10 +112,6 @@ export default function Gallery() {
     </>
   );
 }
-
-SelectToZoom.propTypes = {
-  children: React.ReactNode,
-};
 
 function SelectToZoom({ children }) {
   const api = useBounds();
