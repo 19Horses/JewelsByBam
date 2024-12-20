@@ -11,11 +11,8 @@ import items from "../items.json";
 
 FinalModelWithDescriptor.propTypes = {
   title: PropTypes.string,
-  description: PropTypes.string,
   src: PropTypes.string,
   name: PropTypes.string,
-  material: PropTypes.string,
-  urlName: PropTypes.string,
 };
 
 Model.propTypes = {
@@ -30,7 +27,6 @@ function Model(props) {
   const mesh = useRef();
   const { nodes } = useGLTF(props.src);
   const [dummy] = useState(() => new THREE.Object3D());
-  console.log(props.material);
 
   useFrame((state, dt) => {
     const step = 0.1;
@@ -58,7 +54,7 @@ function Model(props) {
   );
 }
 
-function FinalModelWithDescriptor({ title, src, name, material }) {
+function FinalModelWithDescriptor({ title, src, name }) {
   const [isMouseOver, setIsMouseOver] = useState(false);
   return (
     <motion.div
@@ -72,12 +68,7 @@ function FinalModelWithDescriptor({ title, src, name, material }) {
           <SelectToZoom>
             <ambientLight />
             <directionalLight position={[10, 10, 10]} />
-            <Model
-              src={src}
-              material={material}
-              name={name}
-              isMouseOver={isMouseOver}
-            />
+            <Model src={src} name={name} isMouseOver={isMouseOver} />
           </SelectToZoom>
         </Bounds>
       </Canvas>

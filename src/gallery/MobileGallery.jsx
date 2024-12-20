@@ -29,25 +29,28 @@ function Model(props) {
   });
 
   return (
-    <mesh ref={mesh} geometry={nodes[props.name].geometry} {...props}>
+    <mesh
+      ref={mesh}
+      castShadow
+      receiveShadow
+      geometry={nodes[props.name].geometry}
+      material={nodes[props.name].material}
+    >
       <meshNormalMaterial />
     </mesh>
   );
 }
 
 function FinalModelWithDescriptor({ title, src, name }) {
-  const [isMouseOver, setIsMouseOver] = useState(false);
   return (
     <motion.div
       variants={item}
-      onMouseEnter={() => setIsMouseOver(true)}
-      onMouseLeave={() => setIsMouseOver(false)}
       className="min-h-dvh flex items-center justify-center flex-col p-4"
     >
-      <Canvas className="logo h-full" camera={{ position: [0, 0.1, 3] }}>
+      <Canvas className="logo h-full" camera={{ position: [0, 1, 1] }}>
         <ambientLight />
         <directionalLight position={[10, 10, 10]} />
-        <Model src={src} name={name} isMouseOver={isMouseOver} />
+        <Model src={src} name={name} />
       </Canvas>
       <p className="mobile-descriptor">{title}</p>
     </motion.div>
@@ -56,11 +59,6 @@ function FinalModelWithDescriptor({ title, src, name }) {
 
 export default function MobileGallery() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const swipeHandlers = useSwipeable({
-    onSwipedUp: () => handleNext(),
-    onSwipedDown: () => handlePrevious(),
-    preventScrollOnSwipe: true,
-  });
 
   const handleNext = () => {
     if (currentIndex < models.length - 1) {
@@ -73,6 +71,12 @@ export default function MobileGallery() {
       setCurrentIndex((prevIndex) => prevIndex - 1);
     }
   };
+
+  const swipeHandlers = useSwipeable({
+    onSwipedUp: () => handleNext(),
+    onSwipedDown: () => handlePrevious(),
+    preventScrollOnSwipe: true,
+  });
 
   return (
     <motion.div
