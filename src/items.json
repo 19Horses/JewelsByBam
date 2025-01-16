@@ -1,50 +1,74 @@
 [
   {
     "id": 0,
-    "urlName": "gateinspiredfronts",
     "src": "./6_10_2024.glb",
     "name": "mesh_0",
     "material": "mesh_0",
-    "title": "GATE-INSPIRED FRONTS",
-    "instagramVideo": "https://www.instagram.com/p/C744G_LI8Mx/?img_index=1",
-    "grillMaterial": "925 Sterling Silver",
-    "madeFor": "for AKAY",
-    "description": "925 Sterling Silver gate-inspired fronts. Prompted by all the lovely gates I see when walking about."
+    "title": "WIRE 6 SET",
+    "grillMaterial": "Made from recycled 925 Sterling Silver"
   },
   {
     "id": 1,
-    "urlName": "doubleankhcap",
     "src": "./6_10_2024_2.glb",
     "name": "mesh_0",
     "material": "mesh_0",
-    "title": "DOUBLE ANKH CAP",
-    "grillMaterial": "9ct White Gold",
-    "instagramVideo": "https://www.instagram.com/p/DA27rb-u0-h/?img_index=1",
-    "description": "9ct White Gold double caps featuring an Ankh cutout, window cap and a solid cap.",
-    "madeFor": "for TYLA"
+    "title": "ANKH DOUBLE CAP",
+    "grillMaterial": "Made from recycled 9ct Yellow Gold "
   },
   {
     "id": 2,
-    "urlName": "supastretchystar",
     "src": "./7_10_2024_2.glb",
     "name": "mesh_0",
     "material": "mesh_0",
-    "title": "SUPA STRETCHY STAR",
-    "grillMaterial": "925 Sterling Silver",
-    "instagramVideo": "https://www.instagram.com/p/DAvggPvuaDa/?img_index=2",
-    "description": "A ''Supa Stretchy Shiny Star'' combined double window cap. ",
-    "madeFor": "for -"
+    "title": "STRETCHY STAR",
+    "grillMaterial": "Made from recycled 925 Sterling Silver"
   },
   {
     "id": 3,
-    "urlName": "babybow",
     "src": "./7_10_2024.glb",
     "name": "mesh_0",
     "material": "mesh_0",
-    "title": "BABY BOW",
-    "grillMaterial": "925 Sterling Silver",
-    "video": "./spiralBowVid.mp4",
-    "description": "925 Sterling Silver ''Baby Bow'' fronts.",
-    "madeFor": "for ME!"
+    "title": "BABY BOW FRONT",
+    "grillMaterial": "Made from recycled 925 Sterling Silver"
+  },
+  {
+    "id": 4,
+    "src": "./06_01_2025.glb",
+    "name": "mesh_0",
+    "material": "mesh_0",
+    "title": "DUAL WINDOW BAR ",
+    "grillMaterial": "Made from recycled 925 Sterling Silver"
+  },
+  {
+    "id": 5,
+    "src": "./06_01_2025_2.glb",
+    "name": "mesh_0",
+    "material": "mesh_0",
+    "title": "STAR CUTOUT CAP",
+    "grillMaterial": "made from recycled 925 Sterling Silver"
+  },
+  {
+    "id": 6,
+    "src": "./07_01_2025.glb",
+    "name": "mesh_0",
+    "material": "mesh_0",
+    "title": "GUMMY PENDANTS",
+    "grillMaterial": "Made from recycled 925 Sterling Silver and ethically sourced Baby Pink Sapphires"
+  },
+  {
+    "id": 7,
+    "src": "./07_01_2025_2.glb",
+    "name": "mesh_0",
+    "material": "mesh_0",
+    "title": "RUBY BUBBLE RING",
+    "grillMaterial": "Made from recycled 925 Sterling Silver and ethically sourced Ruby Gemstone"
+  },
+  {
+    "id": 8,
+    "src": "./07_01_2025_3.glb",
+    "name": "mesh_0",
+    "material": "mesh_0",
+    "title": "AMULET PENDANT",
+    "grillMaterial": "Made from recycled 925 Sterling Silver and ethically sourced Baby Pink Sapphire"
   }
 ]

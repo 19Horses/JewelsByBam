@@ -10,7 +10,7 @@ html,
 
 @font-face {
   font-family: "Pixels";
-  src: url("/dotmatrix.woff") format("woff");
+  src: url("/PerfectoCalligraphy.ttf");
   font-display: swap;
 }
 
@@ -28,22 +28,30 @@ html,
   height: 100%;
 }
 
+@font-face {
+  font-family: "helvetica";
+  src: url("/Helvetica-Bold.woff");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "pixelated";
+  src: url("/PixeloidSans-mLxMm.woff");
+  font-display: swap;
+}
+
 .logo {
   will-change: filter;
   transition: filter 300ms;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em #e9eaffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  filter: drop-shadow(0 0 2em #edcc70aa);
 }
 
 .descriptor {
   transition: 400ms all;
   font-family: "Pixels";
-  opacity: 0;
-  font-size: 1.5rem;
+  opacity: 100;
 }
 
 .mobile-descriptor {
@@ -57,7 +65,14 @@ html,
   transition: 400ms all;
   font-family: "highspeed-font";
   opacity: 100;
-  font-size: 4rem;
+  font-size: 10vh;
+}
+
+.titleFont {
+  transition: 400ms all;
+  font-family: "highspeed-font";
+  opacity: 100;
+  font-size: 10rem;
 }
 
 .entranceText {
@@ -66,37 +81,6 @@ html,
   width: fit-content;
   height: fit-content;
   margin: auto;
-}
-
-.descriptor:hover {
-  opacity: 100;
-}
-
-.model:hover ~ .descriptor {
-  opacity: 100;
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
 
 @keyframes fadeIn {
@@ -109,33 +93,392 @@ html,
   }
 }
 
-.jsonToReact {
-  white-space: pre-line;
-}
-
 @keyframes move {
-  to {
+  0% {
+  }
+
+  100% {
     transform: translateX(-50%);
   }
 }
 
-section {
-  overflow: hidden;
-  width: 100%;
+@keyframes backInAnimation {
+  0% {
+    opacity: 0;
+  }
+  33% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.backIn {
+  animation: backInAnimation 3s linear forwards;
+}
+
+.backOut {
+  animation: backInAnimation 0.3s linear reverse forwards;
+}
+
+@keyframes letterAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.word {
   display: inline-block;
-  height: 100px;
-  white-space: nowrap;
+  opacity: 0;
+  animation: letterAnimation 0.5s forwards;
+  animation-delay: calc(var(--index) * 0.04s);
 }
 
-.scrollDiv {
-  width: 340%;
-  display: flex;
-  flex-wrap: nowrap;
-  animation: move 11s infinite linear;
+/* GRILLS */
+.grill-object {
+  transition: transform 0.3s ease-in-out;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  transform: translate(var(--tw-translate-x, 0), var(--tw-translate-y, 0))
+    rotate(var(--tw-rotate, 0)) skewX(var(--tw-skew-x, 0))
+    skewY(var(--tw-skew-y, 0)) scaleX(var(--tw-scale-x, 1))
+    scaleY(var(--tw-scale-y, 1));
 }
 
-p.scrollItem {
-  margin: 0;
-  padding-left: 0px;
+.grill-object.zoomed-out {
+  transform: translateX(-33.333333%);
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+}
+
+.grill-object.zoomed-in {
+  transform: translateX(0);
+  --tw-scale-x: 1.5;
+  --tw-scale-y: 1.5;
+}
+
+.grill-object.zoomed-out:hover {
+  --tw-scale-x: 1.25;
+  --tw-scale-y: 1.25;
+  transform: translateX(-33.333333%) scaleX(var(--tw-scale-x))
+    scaleY(var(--tw-scale-y));
+}
+
+.grill-object.grills-in {
+  animation: grillEntranceAnimation 2s cubic-bezier(0, -0.01, 0, 1) forwards;
+  pointer-events: none;
+}
+
+.grill-object.grills-out {
+  animation: grillExitAnimation 1s ease-in-out forwards;
+}
+
+@keyframes grillEntranceAnimation {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes grillExitAnimation {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+  5% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(200%);
+  }
+}
+
+/* ITEM INFO */
+.item-info {
+  font-style: italic;
+  font-size: 4vw;
+  line-height: 1.1;
+  transition: 400ms all;
+  font-family: "Pixels";
+  opacity: 100;
+  color: rgb(0 0 0);
+  text-shadow: 0px 0px 10px rgba(255, 255, 255, 1);
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: keep-all;
+  pointer-events: none;
+}
+
+.item-info-header.grills-out,
+.item-info.grills-out {
+  animation: backInAnimation 0.3s linear reverse forwards;
+}
+
+.item-info-container {
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  position: fixed;
   width: 50%;
+  z-index: 60;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.item-info-container.zoomed-out {
+  opacity: 1;
+}
+
+.item-info-container.zoomed-in {
+  opacity: 0;
+}
+
+.item-info-header {
+  margin-right: 1rem; /* Add space between the items to prevent overlap */
+  width: 50%; /* Split width equally between items */
+  transition: 400ms all;
+  font-family: "helvetica";
+  opacity: 100;
+  font-size: 1.4vw;
+  text-transform: uppercase;
+  color: black;
+  pointer-events: none;
+  font-weight: 900;
+  text-shadow: 0px 0px 10px rgba(255, 255, 255, 1);
+}
+
+/* BILLBOARD */
+
+.billboard-container {
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  position: fixed;
+  width: 100%;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.billboard-container.zoomed-in {
+  opacity: 0;
+  pointer-events: none;
+}
+
+section {
+  width: 100%; /* Ensure the entire section takes full width */
+  display: block; /* Ensure block layout, so elements expand to fill the container */
+  height: 10vh; /* Adjust height as per your requirements */
+  white-space: nowrap; /* Prevent wrapping of text */
+  overflow: hidden; /* Ensures that the content doesn't overflow and overlap */
+  pointer-events: none;
+}
+
+.full-billboard {
+  width: 300%; /* Sufficient width to display all scroll items */
+  display: flex; /* Use flexbox layout */
+  flex-wrap: nowrap; /* Ensure no wrapping occurs */
+  animation: move 11s linear infinite; /* Apply scrolling animation */
+  pointer-events: none;
+}
+
+.single-billboard {
+  margin-right: 1rem; /* Add space between the items to prevent overlap */
+  width: 50%; /* Split width equally between items */
+  text-align: center;
+  transition: 400ms all;
+  font-family: "highspeed-font";
+  opacity: 100;
+  font-size: 13vw;
+  text-transform: uppercase;
+  color: salmon;
+  pointer-events: none;
+}
+
+/* FOOTER */
+.footer-container {
+  display: flex;
+  flex-direction: row;
+  writing-mode: vertical-rl;
+  font-size: 1.8vw;
+  font-family: "helvetica";
+  position: fixed;
+  bottom: 1.5rem /* 24px */;
+  right: 0.5rem;
+  z-index: 50;
+  animation: grillEntranceAnimation 2s cubic-bezier(0, -0.01, 0, 1) forwards;
+}
+
+.footer-item {
+  color: black;
+  transition: all 0.3s ease-in-out;
+  margin-top: 0.75vh /* 12px */;
+  margin-bottom: 0.75vh /* 12px */;
+}
+
+.footer-item:hover {
+  color: salmon;
+  transform: translateX(-5px);
+  cursor: cell;
+}
+
+/* NAVIGATION */
+.nav-container {
+  display: flex;
+  position: absolute;
+  transition: all 0.3s ease-in-out;
+  justify-content: space-between;
+  top: 2rem;
+  width: 100%;
+  padding-left: 1.25rem /* 20px */;
+  padding-right: 1.25rem;
+  z-index: 100;
+}
+
+.nav-item {
+  color: black;
+  height: auto;
+  width: 30%;
+  transition: all 0.2s ease-out;
+  font-family: "pixelated";
+  font-size: 1.5vw;
+  cursor: cell;
+  animation-fill-mode: forwards;
+  text-shadow: 0px 0px 5px rgba(255, 255, 255, 1);
+  justify-content: center;
+  animation: backInAnimation 1s linear forwards;
+}
+
+.header-container {
+  display: flex;
+  width: 100vw;
+}
+
+.header {
+  font-family: "highspeed-font";
+  font-size: 1.5vw;
+  color: black;
+  text-shadow: 0px 0px 5px rgba(255, 255, 255, 1);
+}
+
+.nav-item-anim {
+  animation: fadeInCreds 0.5s ease-in-out forwards;
+  animation-delay: 0.05s;
+}
+
+.nav-item-anim-rev {
+  animation: fadeInCredsRev 0.5s ease-in-out forwards;
+  animation-delay: 0.05s;
+}
+
+.nav-item-creds {
+  color: black;
+  transition: all 0.3s ease-in-out;
+  font-family: "helvetica";
+  font-size: 2.4vw;
+  cursor: cell;
+  pointer-events: none;
+  animation: fadeInCreds 1s linear forwards;
+  opacity: 0;
+  text-shadow: 0px 0px 5px rgba(255, 255, 255, 1);
+}
+
+.nav-item-creds-details {
+  color: black;
+  transition: all 0.3s ease-in-out;
+  font-family: "helvetica";
+  font-size: 1.2vw;
+  cursor: cell;
+  pointer-events: none;
+  animation: fadeInCredsDetails 1s linear forwards;
+  opacity: 0;
+  animation-fill-mode: forwards;
+  text-shadow: 0px 0px 5px rgba(255, 255, 255, 1);
+}
+
+@keyframes fadeInCreds {
+  0% {
+    transform: translateX(0vw);
+  }
+  15% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50vw);
+  }
+}
+@keyframes fadeInCredsRev {
+  0% {
+    transform: translateX(0vw);
+  }
+  15% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(50vw);
+  }
+}
+
+@keyframes fadeInCredsDetails {
+  0% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.nav-item:hover,
+.nav-item-creds:hover,
+.nav-item-creds-details:hover {
+  color: salmon;
+}
+
+.left:hover {
+  transform: translateX(10px);
+}
+
+.right:hover {
+  transform: translateX(-10px);
+}
+
+.right {
+  text-align: right;
+}
+
+.left {
+  text-align: left;
 }
