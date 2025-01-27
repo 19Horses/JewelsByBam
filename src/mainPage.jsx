@@ -40,7 +40,7 @@ const item = {
 
 function Model(props) {
   const mesh = useRef();
-  const { nodes, materials } = useGLTF(props.src);
+  const { nodes } = useGLTF(props.src);
   const [dummy] = useState(() => new THREE.Object3D());
 
   useFrame((state, dt) => {
@@ -142,7 +142,7 @@ export default function Details() {
             handleItemSwitch(false);
           }}
         >
-          <p> {"← " + prevItem?.title || ""}</p>
+          {prevItem && <p> {"← " + prevItem?.title || ""}</p>}
         </div>
         {/* <div onClick={() => setBioClick(!bioClick)}>
           <InfoPopup />
@@ -163,7 +163,7 @@ export default function Details() {
             handleItemSwitch(true);
           }}
         >
-          <p>{nextItem?.title + " →" || ""}</p>
+          {nextItem && <p>{nextItem?.title + " →" || ""}</p>}
         </div>
       </div>
     );
