@@ -14,6 +14,12 @@ html,
   font-display: swap;
 }
 
+@font-face {
+  font-family: "highspeed-font";
+  src: url("/HIGHSPEED.TTF");
+  font-display: swap;
+}
+
 .grillGallery {
   justify-content: space-evenly;
   justify-items: center;
@@ -45,6 +51,13 @@ html,
   font-family: "Pixels";
   font-size: 1.2rem;
   text-align: center;
+}
+
+.mainFont {
+  transition: 400ms all;
+  font-family: "highspeed-font";
+  opacity: 100;
+  font-size: 4rem;
 }
 
 .entranceText {
@@ -98,5 +111,31 @@ html,
 
 .jsonToReact {
   white-space: pre-line;
-  vertical-align: bottom;
+}
+
+@keyframes move {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+section {
+  overflow: hidden;
+  width: 100%;
+  display: inline-block;
+  height: 100px;
+  white-space: nowrap;
+}
+
+.scrollDiv {
+  width: 340%;
+  display: flex;
+  flex-wrap: nowrap;
+  animation: move 11s infinite linear;
+}
+
+p.scrollItem {
+  margin: 0;
+  padding-left: 0px;
+  width: 50%;
 }
