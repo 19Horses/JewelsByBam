@@ -1,19 +1,14 @@
-import { useGLTF, Bounds } from "@react-three/drei";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { motion, Suspense } from "framer-motion";
+import { useGLTF } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
+import { Suspense } from "framer-motion";
+import { easing } from "maath";
 import PropTypes from "prop-types";
 import { useRef, useState } from "react";
 import * as THREE from "three";
-import { easing } from "maath";
-
-const item = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1 },
-};
 
 export function Model(props) {
   const mesh = useRef();
-  const { nodes, materials } = useGLTF(props.src);
+  const { nodes } = useGLTF(props.src);
   const [dummy] = useState(() => new THREE.Object3D());
 
   useFrame((state, dt) => {
@@ -43,13 +38,9 @@ export function Model(props) {
 }
 
 export function FinalModelWithDescriptor({
-  title,
   src,
   name,
-  id,
   material,
-  grillMaterial,
-  madeFor,
   zoomedIn,
   animatingIn,
   animatingOut,
