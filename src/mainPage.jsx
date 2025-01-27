@@ -142,7 +142,7 @@ export default function Details() {
             handleItemSwitch(false);
           }}
         >
-          <p> {"← " + prevItem?.title || ""}</p>
+          {prevItem && <p> {"← " + prevItem?.title || ""}</p>}
         </div>
         {/* <div onClick={() => setBioClick(!bioClick)}>
           <InfoPopup />
