@@ -4,44 +4,36 @@ import Typewriter from "typewriter-effect";
 import { useState } from "react";
 
 export const InfoPopup = () => {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
-  const id = open ? "simple-popper" : undefined;
+  const [clicked, setClicked] = useState(false);
+  const text1 =
+    "BAM is a jewellery and grillz studio currently based in London, UK. Bam produces an evolving collection of ready to wear jewellery pieces as well as bespoke custom orders and tooth jewellery. Each piece is handcrafted in London with love, care and time. All pieces are made from recycled reclaimed silver and gold and conflict free gemstones.";
+  const text2 = "BAM";
 
-  const handleClick = (event) => {
-    setAnchorEl(anchorEl ? null : event.currentTarget);
+  const [headerText, setHeaderText] = useState(text2);
+
+  function wrapTextWithSpans(text) {
+    return text.split(" ").map((word, index) => (
+      <span
+        key={`${word}-${index}`}
+        className="word"
+        style={{ "--index": index }}
+      >
+        {word}&nbsp;
+      </span>
+    ));
+  }
+
+  const handleClick = () => {
+    setClicked(!clicked);
+    setHeaderText(clicked ? text2 : text1);
   };
+
   return (
-    <div>
-      <a aria-describedby={id} onClick={handleClick} className=" header z-50 ">
-        BAM
+    <div onClick={handleClick} className={``}>
+      <a className={`header ${clicked ? "text-[#fa8072] text-[4vw]" : ""}`}>
+        {wrapTextWithSpans(headerText)}
       </a>
-      <Popper id={id} open={open} anchorEl={anchorEl} placement="bottom">
-        <Box className="mx-3" sx={{ border: 1, p: 1 }}>
-          <div className="typewriter">
-            <Typewriter
-              onInit={(typewriter) => {
-                typewriter
-                  .changeDelay(20)
-                  .typeString(
-                    "BAM is a jewellery and grillz studio currently based in London, UK."
-                  )
-                  .typeString(
-                    "<br />Bam produces an evolving collection of ready to wear jewellery pieces as well as bespoke custom orders and tooth jewellery."
-                  )
-                  .typeString(
-                    "<br />Each piece is handcrafted in London with love, care and time."
-                  )
-                  .typeString(
-                    "<br />All pieces are made from recycled reclaimed silver and gold and conflict free gemstones. "
-                  )
-                  .typeString("<br />૮ ˶ᵔ ᵕ ᵔ˶ ა")
-                  .start();
-              }}
-            />
-          </div>
-        </Box>
-      </Popper>
+      {clicked && <p className="cute-thing anim-bottom">૮ ˶ᵔ ᵕ ᵔ˶ ა</p>}
     </div>
   );
 };

@@ -113,6 +113,7 @@ export default function Details() {
   const [zoomedIn, setZoomedIn] = useState(true);
   const [bioClick, setBioClick] = useState(false);
   const [sectionCount, setSectionCount] = useState(10);
+  const [navButtonsAnimated, setNavButtonsAnimated] = useState(true);
   const sectionRef = useRef(null);
   const animationRef = useMenuFunctionality(setItem, setAnimatingIn);
   const nextItem = item ? findNextArrayItemByID(items, item.id) : null;
@@ -134,7 +135,7 @@ export default function Details() {
               ? ""
               : "pointer-events-none "
           }
-            ${findPrevArrayItemByID(items, item.id) ? "" : "opacity-0"} ${
+            ${findPrevArrayItemByID(items, item.id) ? "" : "opacity-0"}${
             zoomedIn ? "" : "nav-item-anim-rev"
           }
             `}
@@ -144,9 +145,7 @@ export default function Details() {
         >
           {prevItem && <p> {"← " + prevItem?.title || ""}</p>}
         </div>
-        {/* <div onClick={() => setBioClick(!bioClick)}>
-          <InfoPopup />
-        </div> */}
+
         <div
           className={`nav-item right ${
             findNextArrayItemByID(items, item.id) &&
@@ -217,12 +216,19 @@ export default function Details() {
           height: "100vh",
         }}
       >
-        <NavButtons />
+        <div
+          className={`header-container ${bioClick ? "px-5" : ""}`}
+          onClick={() => setBioClick(!bioClick)}
+        >
+          <InfoPopup />
+        </div>
+
         <div
           className={` w-full h-full relative transition-all duration-500 ${
-            bioClick ? "blur-md" : ""
+            bioClick ? "blur-md pointer-events-none" : ""
           }`}
         >
+          <NavButtons />
           <div
             className={`billboard-container
             ${zoomedIn ? "" : "zoomed-in"}`}
@@ -252,11 +258,7 @@ export default function Details() {
             </p>
           </div>
           <div
-            className={`grill-object ${zoomedIn ? "zoomed-out" : "zoomed-in"} ${
-              !animatingIn && !animatingOut
-                ? "pointer-events-auto"
-                : "pointer-events-none "
-            }`}
+            className={`grill-object ${zoomedIn ? "zoomed-out" : "zoomed-in"} `}
           >
             <Suspense fallback={null}>
               {item.src && item.name && (
@@ -269,12 +271,15 @@ export default function Details() {
                   className={`grill-object  ${animatingIn ? "grills-in" : ""} ${
                     animatingOut ? "grills-out" : ""
                   } 
-                  ${zoomedIn ? "cursor-zoom-in" : "cursor-zoom-out"}
+                  ${zoomedIn ? "cursor-zoom-in" : "cursor-zoom-out"} ${
+                    !animatingIn && !animatingOut
+                      ? "pointer-events-auto"
+                      : "pointer-events-none "
+                  }
                   `}
                   onAnimationEnd={() => {
                     if (animatingOut) {
                       setAnimatingOut(false);
-                      setAnimatingIn(true);
                     } else if (animatingIn) {
                       setAnimatingIn(false);
                     }
@@ -293,10 +298,9 @@ export default function Details() {
               )}
             </Suspense>
           </div>
+          <Footer />
         </div>
       </div>
-
-      <Footer />
     </>
   );
 }
