@@ -373,7 +373,7 @@ section {
 .header-container {
   position: absolute;
   top: 2rem; /* Position at the top of the screen */
-  width: 100%; /* Full width */
+  width: auto; /* Full width */
   display: flex;
   justify-content: center;
   cursor: pointer;

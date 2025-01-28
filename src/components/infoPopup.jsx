@@ -30,7 +30,11 @@ export const InfoPopup = () => {
 
   return (
     <div onClick={handleClick} className={``}>
-      <a className={`header ${clicked ? "text-[#fa8072] text-[4vw]" : ""}`}>
+      <a
+        className={`header ${
+          clicked ? "text-[#fa8072] text-[4vw] w-auto" : ""
+        }`}
+      >
         {wrapTextWithSpans(headerText)}
       </a>
       {clicked && <p className="cute-thing anim-bottom">૮ ˶ᵔ ᵕ ᵔ˶ ა</p>}
