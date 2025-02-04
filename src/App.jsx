@@ -9,7 +9,6 @@ function App() {
       <Routes key={location.pathname}>
         <Route path="/" exact element={<LandingPage />} />
         <Route path="/works" element={<Details />} />
-        <Route path="details/:urlName" element={<Details />} />
       </Routes>
     </Router>
   );
