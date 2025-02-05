@@ -2,7 +2,7 @@ import { Bounds, useGLTF } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { easing } from "maath";
 import PropTypes from "prop-types";
-import { memo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import * as THREE from "three";
 
 Model.propTypes = {
