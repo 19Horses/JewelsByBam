@@ -229,11 +229,6 @@ html,
   pointer-events: none;
 }
 
-.billboard-container.zoomed-in {
-  opacity: 0;
-  pointer-events: none;
-}
-
 section {
   width: 100%;
   display: block;
@@ -341,6 +336,46 @@ section {
   animation-delay: 0.05s;
 }
 
+.enter-from-right {
+  animation: slideInFromRight 2s ease-in-out forwards;
+}
+
+.enter-from-left {
+  animation: slideInFromLeft 2s ease-in-out forwards;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-50vw);
+  }
+  15% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0vw);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(50vw);
+  }
+  15% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0vw);
+  }
+}
+
 @keyframes fadeInCreds {
   0% {
     transform: translateX(0vw);
@@ -356,6 +391,7 @@ section {
     transform: translateX(-50vw);
   }
 }
+
 @keyframes fadeInCredsRev {
   0% {
     transform: translateX(0vw);
