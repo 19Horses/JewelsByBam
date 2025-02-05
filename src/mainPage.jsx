@@ -10,7 +10,7 @@ export default function Details() {
   const [itemIndex, setItemIndex] = useState(0);
   const [animatingIn, setAnimatingIn] = useState(true);
   const [animatingOut, setAnimatingOut] = useState(false);
-  const [zoomedIn, setZoomedIn] = useState(true);
+  const [zoomedOut, setZoomedOut] = useState(true);
   const [bioClick, setBioClick] = useState(false);
 
   const currentItem = useMemo(() => {
@@ -32,7 +32,10 @@ export default function Details() {
           className={`nav-item left ${
             !animatingIn && !animatingOut ? "" : "pointer-events-none"
           }
-            ${zoomedIn ? "" : "nav-item-anim-rev"}
+            ${zoomedOut ? "" : "nav-item-anim-rev"} ${
+            animatingOut ? "nav-item-anim" : ""
+          } ${animatingIn ? "enter-from-left" : ""}
+            
             `}
           onClick={() => {
             itemSwitch(setAnimatingOut, setAnimatingIn, () =>
@@ -47,7 +50,9 @@ export default function Details() {
           className={`nav-item right ${
             !animatingIn && !animatingOut ? "" : "pointer-events-none"
           }
-            ${zoomedIn ? "" : "nav-item-anim"}
+            ${zoomedOut ? "" : "nav-item-anim"} ${
+            animatingOut ? "nav-item-anim-rev" : ""
+          } ${animatingIn ? "enter-from-right" : ""}
             `}
           onClick={() => {
             itemSwitch(setAnimatingOut, setAnimatingIn, () =>
@@ -94,7 +99,7 @@ export default function Details() {
           </div>
           <div
             className={`item-info-container ${
-              zoomedIn ? "zoomed-out" : "zoomed-in"
+              zoomedOut ? "zoomed-out" : "zoomed-in"
             }`}
           >
             <p
@@ -110,18 +115,20 @@ export default function Details() {
             </p>
           </div>
           <div
-            className={`grill-object ${zoomedIn ? "zoomed-out" : "zoomed-in"} `}
+            className={`grill-object ${
+              zoomedOut ? "zoomed-out" : "zoomed-in"
+            } `}
           >
             <Suspense fallback={null}>
               {
                 <div
                   onClick={() => {
-                    setZoomedIn(!zoomedIn);
+                    setZoomedOut(!zoomedOut);
                   }}
                   className={`grill-object  ${animatingIn ? "grills-in" : ""} ${
                     animatingOut ? "grills-out" : ""
                   } 
-                  ${zoomedIn ? "cursor-zoom-in" : "cursor-zoom-out"} ${
+                  ${zoomedOut ? "cursor-zoom-in" : "cursor-zoom-out"} ${
                     !animatingIn && !animatingOut
                       ? "pointer-events-auto"
                       : "pointer-events-none "
