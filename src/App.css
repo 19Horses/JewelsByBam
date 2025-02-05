@@ -171,6 +171,10 @@ html,
   pointer-events: none;
 }
 
+.item-info.mobile {
+  font-size: 6vw;
+}
+
 .item-info-header.grills-out,
 .item-info.grills-out {
   animation: backInAnimation 0.3s linear reverse forwards;
@@ -187,6 +191,12 @@ html,
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
+}
+
+.item-info-container.mobile {
+  top: 82.5%;
+  margin-right: 1rem;
+  text-align: right;
 }
 
 .item-info-container.zoomed-out {
@@ -211,6 +221,11 @@ html,
   text-shadow: 0px 0px 10px rgba(255, 255, 255, 1);
 }
 
+.item-info-header.mobile {
+  width: 100%;
+  font-size: 3vw;
+}
+
 /* BILLBOARD */
 
 .billboard-container {
@@ -226,7 +241,7 @@ html,
 }
 
 .billboard-container.mobile {
-  top: 25%;
+  top: 20%;
 }
 
 section {

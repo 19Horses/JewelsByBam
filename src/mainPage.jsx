@@ -100,16 +100,19 @@ export default function Details() {
           <div
             className={`item-info-container ${
               zoomedOut ? "zoomed-out" : "zoomed-in"
-            }`}
+            } ${isMobile ? "mobile" : ""}`}
           >
             <p
-              className={`item-info-header ${animatingOut ? "grills-out" : ""}`}
+              className={`item-info-header ${
+                animatingOut ? "grills-out" : ""
+              } ${isMobile ? "mobile" : ""}`}
             >
               {wrapTextWithSpans(currentItem.title)}
             </p>
             <p
-              key={currentItem.id}
-              className={`item-info ${animatingOut ? "grills-out" : ""}`}
+              className={`item-info ${animatingOut ? "grills-out" : ""} ${
+                isMobile ? "mobile" : ""
+              }`}
             >
               {wrapTextWithSpans(currentItem.grillMaterial)}
             </p>
