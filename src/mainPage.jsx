@@ -120,7 +120,7 @@ export default function Details() {
           <div
             className={`grill-object ${
               zoomedOut ? "zoomed-out" : "zoomed-in"
-            } `}
+            } ${isMobile ? "mobile" : ""} `}
           >
             <Suspense fallback={null}>
               {
