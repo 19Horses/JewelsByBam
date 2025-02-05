@@ -1,16 +1,8 @@
 import { useEffect, useRef } from "react";
 import items from "../items.json";
 
-export const useMenuFunctionality = (setItem, setAnimatingIn) => {
+export const useMenuFunctionality = (setAnimatingIn) => {
   const animationRef = useRef(null);
-
-  useEffect(() => {
-    const selectedItem = findArrayElementByID(items, 0);
-    if (selectedItem) {
-      setItem(selectedItem);
-      setAnimatingIn(true);
-    }
-  }, [setItem, setAnimatingIn]);
 
   useEffect(() => {
     const element = animationRef.current;
@@ -36,15 +28,21 @@ export const itemSwitch = (
   item
 ) => {
   setAnimatingOut(true);
-  console.log("Animating out");
   setTimeout(() => {
-    console.log("start");
     if (forward) setItem(findNextArrayItemByID(items, item.id));
     else setItem(findPrevArrayItemByID(items, item.id));
     setAnimatingOut(false);
     setAnimatingIn(true);
-    console.log("Animating in");
-  }, 400); // Adjust the delay to match the duration of your animation
+  }, 400);
+};
+
+export const itemSwitchTEMP = (setAnimatingOut, setAnimatingIn, cb) => {
+  setAnimatingOut(true);
+  setTimeout(() => {
+    cb();
+    setAnimatingOut(false);
+    setAnimatingIn(true);
+  }, 400);
 };
 
 export function findArrayElementByID(array, id) {

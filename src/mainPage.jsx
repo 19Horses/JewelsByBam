@@ -6,12 +6,10 @@ import PropTypes from "prop-types";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import items from "./items.json";
-import { Suspense } from "react";
+import { Suspense, useMemo } from "react";
 import {
   useMenuFunctionality,
-  itemSwitch,
-  findNextArrayItemByID,
-  findPrevArrayItemByID,
+  itemSwitchTEMP,
 } from "./functions/menuFunctionality";
 import { Footer } from "./components/footer";
 import { InfoPopup } from "./components/infoPopup";
@@ -24,7 +22,7 @@ Model.propTypes = {
   zoom: PropTypes.bool,
 };
 
-FinalModelWithDescriptor.propTypes = {
+Grill.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   src: PropTypes.string,
@@ -69,7 +67,7 @@ function Model(props) {
   );
 }
 
-function FinalModelWithDescriptor({ src, name, material }) {
+function Grill({ src, name, material }) {
   const [isMouseOver, setIsMouseOver] = useState(false);
   return (
     <motion.div
@@ -107,62 +105,60 @@ function wrapTextWithSpans(text) {
 }
 
 export default function Details() {
-  const [item, setItem] = useState(null);
-  const [animatingIn, setAnimatingIn] = useState(false);
+  const [itemIndex, setItemIndex] = useState(0);
+  const [animatingIn, setAnimatingIn] = useState(true);
   const [animatingOut, setAnimatingOut] = useState(false);
   const [zoomedIn, setZoomedIn] = useState(true);
   const [bioClick, setBioClick] = useState(false);
   const [sectionCount, setSectionCount] = useState(10);
-  const [navButtonsAnimated, setNavButtonsAnimated] = useState(true);
+
   const sectionRef = useRef(null);
-  const animationRef = useMenuFunctionality(setItem, setAnimatingIn);
-  const nextItem = item ? findNextArrayItemByID(items, item.id) : null;
-  const prevItem = item ? findPrevArrayItemByID(items, item.id) : null;
+  const animationRef = useMenuFunctionality(setAnimatingIn);
   const sectionDelaysRef = useRef([]);
 
-  const handleItemSwitch = (forward) => {
-    itemSwitch(setItem, setAnimatingOut, setAnimatingIn, forward, item);
-  };
+  const currentItem = useMemo(() => {
+    return items[itemIndex];
+  }, [itemIndex]);
+
+  const previousItem = useMemo(() => {
+    return itemIndex > 0 ? items[itemIndex - 1] : null;
+  }, [itemIndex]);
+
+  const nextItemTEMP = useMemo(() => {
+    return itemIndex < items.length - 1 ? items[itemIndex + 1] : null;
+  }, [itemIndex]);
 
   function NavButtons() {
     return (
       <div className={`nav-container`}>
         <div
           className={`nav-item left ${
-            findPrevArrayItemByID(items, item.id) &&
-            !animatingIn &&
-            !animatingOut
-              ? ""
-              : "pointer-events-none "
+            !animatingIn && !animatingOut ? "" : "pointer-events-none "
           }
-            ${findPrevArrayItemByID(items, item.id) ? "" : "opacity-0"}${
-            zoomedIn ? "" : "nav-item-anim-rev"
-          }
+            ${zoomedIn ? "" : "nav-item-anim-rev"}
             `}
           onClick={() => {
-            handleItemSwitch(false);
+            itemSwitchTEMP(setAnimatingOut, setAnimatingIn, () =>
+              setItemIndex(itemIndex - 1)
+            );
           }}
         >
-          {prevItem && <p> {"← " + prevItem?.title || ""}</p>}
+          {previousItem && <p> {"← " + previousItem.title}</p>}
         </div>
 
         <div
           className={`nav-item right ${
-            findNextArrayItemByID(items, item.id) &&
-            !animatingIn &&
-            !animatingOut
-              ? ""
-              : "pointer-events-none"
+            !animatingIn && !animatingOut ? "" : "pointer-events-none"
           }
-            ${findNextArrayItemByID(items, item.id) ? "" : "opacity-0"} ${
-            zoomedIn ? "" : "nav-item-anim"
-          } "}
+            ${zoomedIn ? "" : "nav-item-anim"}
             `}
           onClick={() => {
-            handleItemSwitch(true);
+            itemSwitchTEMP(setAnimatingOut, setAnimatingIn, () =>
+              setItemIndex(itemIndex + 1)
+            );
           }}
         >
-          {nextItem && <p>{nextItem?.title + " →" || ""}</p>}
+          {nextItemTEMP && <p>{nextItemTEMP.title + " →"}</p>}
         </div>
       </div>
     );
@@ -202,7 +198,7 @@ export default function Details() {
     };
   }, []);
 
-  if (!item) {
+  if (!currentItem) {
     return <p>hello</p>;
   }
 
@@ -235,8 +231,8 @@ export default function Details() {
           >
             <section className={`h-full`}>
               <div className={`full-billboard`}>
-                <p className="single-billboard">{item.title}</p>
-                <p className="single-billboard">{item.title}</p>
+                <p className="single-billboard">{currentItem.title}</p>
+                <p className="single-billboard">{currentItem.title}</p>
               </div>
             </section>
           </div>
@@ -248,20 +244,20 @@ export default function Details() {
             <p
               className={`item-info-header ${animatingOut ? "grills-out" : ""}`}
             >
-              {wrapTextWithSpans(item.title)}
+              {wrapTextWithSpans(currentItem.title)}
             </p>
             <p
-              key={item.id}
+              key={currentItem.id}
               className={`item-info ${animatingOut ? "grills-out" : ""}`}
             >
-              {wrapTextWithSpans(item.grillMaterial)}
+              {wrapTextWithSpans(currentItem.grillMaterial)}
             </p>
           </div>
           <div
             className={`grill-object ${zoomedIn ? "zoomed-out" : "zoomed-in"} `}
           >
             <Suspense fallback={null}>
-              {item.src && item.name && (
+              {currentItem.src && currentItem.name && (
                 <div
                   ref={animationRef}
                   onClick={() => {
@@ -285,14 +281,14 @@ export default function Details() {
                     }
                   }}
                 >
-                  <FinalModelWithDescriptor
-                    key={item.title}
-                    title={item.title}
-                    name={item.name}
-                    material={item.material}
-                    grillMaterial={item.grillMaterial}
-                    madeFor={item.madeFor}
-                    src={item.src.slice(1)}
+                  <Grill
+                    key={currentItem.title}
+                    title={currentItem.title}
+                    name={currentItem.name}
+                    material={currentItem.material}
+                    grillMaterial={currentItem.grillMaterial}
+                    madeFor={currentItem.madeFor}
+                    src={currentItem.src.slice(1)}
                   />
                 </div>
               )}
