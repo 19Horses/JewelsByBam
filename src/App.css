@@ -110,9 +110,9 @@ html,
 }
 
 .grill-object.zoomed-in {
-  transform: translateX(0);
-  --tw-scale-x: 1.5;
-  --tw-scale-y: 1.5;
+  --tw-scale-x: 1.25;
+  --tw-scale-y: 1.25;
+  transform: translateX(0%) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .grill-object.zoomed-out:hover {
@@ -120,6 +120,12 @@ html,
   --tw-scale-y: 1.25;
   transform: translateX(-33.333333%) scaleX(var(--tw-scale-x))
     scaleY(var(--tw-scale-y));
+}
+
+.grill-object.zoomed-out.mobile:hover {
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  transform: scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .grill-object.grills-in {
