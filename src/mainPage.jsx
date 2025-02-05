@@ -89,7 +89,7 @@ export default function Details() {
           }`}
         >
           <NavButtons />
-          <div className="billboard-container">
+          <div className={`billboard-container ${isMobile ? "mobile" : ""}`}>
             <section className={`h-full`}>
               <div className={`full-billboard`}>
                 <p className="single-billboard">{currentItem.title}</p>
