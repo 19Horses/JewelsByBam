@@ -23,7 +23,6 @@ function Model({ src, name }) {
   const [isMouseOver, setIsMouseOver] = useState(false);
 
   useFrame((state, dt) => {
-    console.log(dummy);
     const step = 0.1;
     state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, 50, step);
     if (isMouseOver) {
@@ -49,7 +48,6 @@ function Model({ src, name }) {
 }
 
 export function GrillCanvas({ src, name }) {
-  console.log("hey");
   return (
     <Canvas className="model logo h-full" camera={{ position: [0, 10, 3] }}>
       <Bounds fit clip observe margin={1.2}>
