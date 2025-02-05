@@ -308,6 +308,10 @@ section {
   justify-content: center;
 }
 
+.nav-item.mobile {
+  font-size: 3vw;
+}
+
 .header-container {
   position: absolute;
   top: 2rem;
@@ -322,6 +326,13 @@ section {
 .header {
   font-family: "helvetica";
   font-size: 2vw;
+  color: black;
+  text-shadow: 0px 0px 5px rgba(255, 255, 255, 1);
+}
+
+.header.mobile {
+  font-family: "helvetica";
+  font-size: 5vw;
   color: black;
   text-shadow: 0px 0px 5px rgba(255, 255, 255, 1);
 }

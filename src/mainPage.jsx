@@ -5,6 +5,7 @@ import { itemSwitch } from "./functions/menuFunctionality";
 import items from "./items.json";
 import { GrillCanvas } from "./components/Grill";
 import { wrapTextWithSpans } from "./functions/wrapTextWithSpans";
+import { isMobile } from "react-device-detect";
 
 export default function Details() {
   const [itemIndex, setItemIndex] = useState(0);
@@ -34,8 +35,7 @@ export default function Details() {
           }
             ${zoomedOut ? "" : "nav-item-anim-rev"} ${
             animatingOut ? "nav-item-anim" : ""
-          } ${animatingIn ? "enter-from-left" : ""}
-            
+          } ${animatingIn ? "enter-from-left" : ""} ${isMobile ? "mobile" : ""}
             `}
           onClick={() => {
             itemSwitch(setAnimatingOut, setAnimatingIn, () =>
@@ -52,7 +52,7 @@ export default function Details() {
           }
             ${zoomedOut ? "" : "nav-item-anim"} ${
             animatingOut ? "nav-item-anim-rev" : ""
-          } ${animatingIn ? "enter-from-right" : ""}
+          } ${animatingIn ? "enter-from-right" : ""} ${isMobile ? "mobile" : ""}
             `}
           onClick={() => {
             itemSwitch(setAnimatingOut, setAnimatingIn, () =>
