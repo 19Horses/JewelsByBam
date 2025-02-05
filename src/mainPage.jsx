@@ -1,18 +1,14 @@
-import { useGLTF, Bounds } from "@react-three/drei";
+import { Bounds, useGLTF } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { motion } from "framer-motion";
 import { easing } from "maath";
 import PropTypes from "prop-types";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
-import items from "./items.json";
-import { Suspense, useMemo } from "react";
-import {
-  useMenuFunctionality,
-  itemSwitchTEMP,
-} from "./functions/menuFunctionality";
 import { Footer } from "./components/footer";
 import { InfoPopup } from "./components/infoPopup";
+import { itemSwitch } from "./functions/menuFunctionality";
+import items from "./items.json";
 
 Model.propTypes = {
   src: PropTypes.string,
@@ -22,7 +18,7 @@ Model.propTypes = {
   zoom: PropTypes.bool,
 };
 
-Grill.propTypes = {
+GrillCanvas.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   src: PropTypes.string,
@@ -67,7 +63,7 @@ function Model(props) {
   );
 }
 
-function Grill({ src, name, material }) {
+function GrillCanvas({ src, name, material }) {
   const [isMouseOver, setIsMouseOver] = useState(false);
   return (
     <motion.div
@@ -110,11 +106,6 @@ export default function Details() {
   const [animatingOut, setAnimatingOut] = useState(false);
   const [zoomedIn, setZoomedIn] = useState(true);
   const [bioClick, setBioClick] = useState(false);
-  const [sectionCount, setSectionCount] = useState(10);
-
-  const sectionRef = useRef(null);
-  const animationRef = useMenuFunctionality(setAnimatingIn);
-  const sectionDelaysRef = useRef([]);
 
   const currentItem = useMemo(() => {
     return items[itemIndex];
@@ -138,7 +129,7 @@ export default function Details() {
             ${zoomedIn ? "" : "nav-item-anim-rev"}
             `}
           onClick={() => {
-            itemSwitchTEMP(setAnimatingOut, setAnimatingIn, () =>
+            itemSwitch(setAnimatingOut, setAnimatingIn, () =>
               setItemIndex(itemIndex - 1)
             );
           }}
@@ -153,7 +144,7 @@ export default function Details() {
             ${zoomedIn ? "" : "nav-item-anim"}
             `}
           onClick={() => {
-            itemSwitchTEMP(setAnimatingOut, setAnimatingIn, () =>
+            itemSwitch(setAnimatingOut, setAnimatingIn, () =>
               setItemIndex(itemIndex + 1)
             );
           }}
@@ -162,44 +153,6 @@ export default function Details() {
         </div>
       </div>
     );
-  }
-
-  useEffect(() => {
-    if (sectionDelaysRef.current.length === 0) {
-      sectionDelaysRef.current = Array.from({ length: sectionCount }).map(
-        () => Math.random() * 10
-      );
-    }
-  }, [sectionCount]);
-
-  useEffect(() => {
-    const updateSectionCount = () => {
-      requestAnimationFrame(() => {
-        if (sectionRef.current) {
-          const sectionHeight = sectionRef.current.offsetHeight;
-          const viewportHeight = window.innerHeight;
-
-          if (sectionHeight > 0) {
-            const count = Math.ceil(viewportHeight / sectionHeight);
-            setSectionCount(count);
-            console.log("Viewport Height:", viewportHeight);
-            console.log("Section Height:", sectionHeight);
-            console.log("Section Count:", count);
-          }
-        }
-      });
-    };
-
-    updateSectionCount();
-    window.addEventListener("resize", updateSectionCount);
-
-    return () => {
-      window.removeEventListener("resize", updateSectionCount);
-    };
-  }, []);
-
-  if (!currentItem) {
-    return <p>hello</p>;
   }
 
   return (
@@ -257,12 +210,10 @@ export default function Details() {
             className={`grill-object ${zoomedIn ? "zoomed-out" : "zoomed-in"} `}
           >
             <Suspense fallback={null}>
-              {currentItem.src && currentItem.name && (
+              {
                 <div
-                  ref={animationRef}
                   onClick={() => {
                     setZoomedIn(!zoomedIn);
-                    console.log(zoomedIn);
                   }}
                   className={`grill-object  ${animatingIn ? "grills-in" : ""} ${
                     animatingOut ? "grills-out" : ""
@@ -281,7 +232,7 @@ export default function Details() {
                     }
                   }}
                 >
-                  <Grill
+                  <GrillCanvas
                     key={currentItem.title}
                     title={currentItem.title}
                     name={currentItem.name}
@@ -291,7 +242,7 @@ export default function Details() {
                     src={currentItem.src.slice(1)}
                   />
                 </div>
-              )}
+              }
             </Suspense>
           </div>
           <Footer />
