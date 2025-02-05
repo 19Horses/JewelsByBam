@@ -115,7 +115,7 @@ export default function Details() {
     return itemIndex > 0 ? items[itemIndex - 1] : null;
   }, [itemIndex]);
 
-  const nextItemTEMP = useMemo(() => {
+  const nextItem = useMemo(() => {
     return itemIndex < items.length - 1 ? items[itemIndex + 1] : null;
   }, [itemIndex]);
 
@@ -149,7 +149,7 @@ export default function Details() {
             );
           }}
         >
-          {nextItemTEMP && <p>{nextItemTEMP.title + " →"}</p>}
+          {nextItem && <p>{nextItem.title + " →"}</p>}
         </div>
       </div>
     );
