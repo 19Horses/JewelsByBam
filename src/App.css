@@ -229,11 +229,6 @@ html,
   pointer-events: none;
 }
 
-.billboard-container.zoomed-in {
-  opacity: 0;
-  pointer-events: none;
-}
-
 section {
   width: 100%;
   display: block;

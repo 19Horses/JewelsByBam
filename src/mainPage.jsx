@@ -30,7 +30,7 @@ export default function Details() {
       <div className={`nav-container`}>
         <div
           className={`nav-item left ${
-            !animatingIn && !animatingOut ? "" : "pointer-events-none "
+            !animatingIn && !animatingOut ? "" : "pointer-events-none"
           }
             ${zoomedIn ? "" : "nav-item-anim-rev"}
             `}
@@ -84,10 +84,7 @@ export default function Details() {
           }`}
         >
           <NavButtons />
-          <div
-            className={`billboard-container
-            ${zoomedIn ? "" : "zoomed-in"}`}
-          >
+          <div className="billboard-container">
             <section className={`h-full`}>
               <div className={`full-billboard`}>
                 <p className="single-billboard">{currentItem.title}</p>
