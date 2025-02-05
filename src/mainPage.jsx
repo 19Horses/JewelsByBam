@@ -5,6 +5,7 @@ import { itemSwitch } from "./functions/menuFunctionality";
 import items from "./items.json";
 import { GrillCanvas } from "./components/Grill";
 import { wrapTextWithSpans } from "./functions/wrapTextWithSpans";
+import { isMobile } from "react-device-detect";
 
 export default function Details() {
   const [itemIndex, setItemIndex] = useState(0);
@@ -34,8 +35,7 @@ export default function Details() {
           }
             ${zoomedOut ? "" : "nav-item-anim-rev"} ${
             animatingOut ? "nav-item-anim" : ""
-          } ${animatingIn ? "enter-from-left" : ""}
-            
+          } ${animatingIn ? "enter-from-left" : ""} ${isMobile ? "mobile" : ""}
             `}
           onClick={() => {
             itemSwitch(setAnimatingOut, setAnimatingIn, () =>
@@ -52,7 +52,7 @@ export default function Details() {
           }
             ${zoomedOut ? "" : "nav-item-anim"} ${
             animatingOut ? "nav-item-anim-rev" : ""
-          } ${animatingIn ? "enter-from-right" : ""}
+          } ${animatingIn ? "enter-from-right" : ""} ${isMobile ? "mobile" : ""}
             `}
           onClick={() => {
             itemSwitch(setAnimatingOut, setAnimatingIn, () =>
@@ -89,7 +89,7 @@ export default function Details() {
           }`}
         >
           <NavButtons />
-          <div className="billboard-container">
+          <div className={`billboard-container ${isMobile ? "mobile" : ""}`}>
             <section className={`h-full`}>
               <div className={`full-billboard`}>
                 <p className="single-billboard">{currentItem.title}</p>
@@ -100,16 +100,19 @@ export default function Details() {
           <div
             className={`item-info-container ${
               zoomedOut ? "zoomed-out" : "zoomed-in"
-            }`}
+            } ${isMobile ? "mobile" : ""}`}
           >
             <p
-              className={`item-info-header ${animatingOut ? "grills-out" : ""}`}
+              className={`item-info-header ${
+                animatingOut ? "grills-out" : ""
+              } ${isMobile ? "mobile" : ""}`}
             >
               {wrapTextWithSpans(currentItem.title)}
             </p>
             <p
-              key={currentItem.id}
-              className={`item-info ${animatingOut ? "grills-out" : ""}`}
+              className={`item-info ${animatingOut ? "grills-out" : ""} ${
+                isMobile ? "mobile" : ""
+              }`}
             >
               {wrapTextWithSpans(currentItem.grillMaterial)}
             </p>
@@ -117,7 +120,7 @@ export default function Details() {
           <div
             className={`grill-object ${
               zoomedOut ? "zoomed-out" : "zoomed-in"
-            } `}
+            } ${isMobile ? "mobile" : ""} `}
           >
             <Suspense fallback={null}>
               {

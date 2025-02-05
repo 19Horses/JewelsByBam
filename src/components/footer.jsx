@@ -1,13 +1,12 @@
+import { isMobile } from "react-device-detect";
 import { Link } from "react-router-dom";
 
 export const Footer = () => {
   return (
-    <div className="footer-container">
+    <div className={`footer-container ${isMobile ? "mobile" : ""}`}>
       <div className="footer-item">
-        <Link to="/">
-          <a className="footer-item" target="blank">
-            home
-          </a>
+        <Link to="/" className="footer-item">
+          home
         </Link>
       </div>
       <div className="footer-item">

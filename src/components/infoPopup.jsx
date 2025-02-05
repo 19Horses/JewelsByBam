@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { wrapTextWithSpans } from "../functions/wrapTextWithSpans";
+import { isMobile } from "react-device-detect";
 
 export const InfoPopup = () => {
   const [clicked, setClicked] = useState(false);
@@ -14,12 +15,17 @@ export const InfoPopup = () => {
     setHeaderText(clicked ? text2 : text1);
   };
 
+  const clickedStyle = {
+    color: "#fa8072",
+    fontSize: "5vw",
+    width: "100%",
+  };
+
   return (
-    <div onClick={handleClick} className={``}>
+    <div onClick={handleClick}>
       <a
-        className={`header ${
-          clicked ? "text-[#fa8072] text-[4vw] w-auto" : ""
-        }`}
+        style={clicked ? clickedStyle : {}}
+        className={`header ${isMobile ? "mobile" : ""}`}
       >
         {wrapTextWithSpans(headerText)}
       </a>
