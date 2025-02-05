@@ -1,11 +1,11 @@
 import { Suspense, useMemo, useState } from "react";
+import { isMobile } from "react-device-detect";
 import { Footer } from "./components/footer";
+import { GrillCanvas } from "./components/Grill";
 import { InfoPopup } from "./components/infoPopup";
 import { itemSwitch } from "./functions/menuFunctionality";
-import items from "./items.json";
-import { GrillCanvas } from "./components/Grill";
 import { wrapTextWithSpans } from "./functions/wrapTextWithSpans";
-import { isMobile } from "react-device-detect";
+import items from "./items.json";
 
 export default function Details() {
   const [itemIndex, setItemIndex] = useState(0);
