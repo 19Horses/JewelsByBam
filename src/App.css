@@ -21,14 +21,6 @@ html,
   font-display: swap;
 }
 
-.grillGallery {
-  justify-content: space-evenly;
-  justify-items: center;
-  align-content: space-evenly;
-  align-items: center;
-  height: 100%;
-}
-
 @font-face {
   font-family: "helvetica";
   src: url("/Helvetica-Bold.woff");
@@ -49,49 +41,12 @@ html,
   filter: drop-shadow(0 0 2em #fa8072);
 }
 
-.descriptor {
-  transition: 400ms all;
-  font-family: "Pixels";
-  opacity: 100;
-}
-
-.mobile-descriptor {
-  transition: 400ms all;
-  font-family: "Pixels";
-  font-size: 1.2rem;
-  text-align: center;
-}
-
-.mainFont {
-  transition: 400ms all;
-  font-family: "highspeed-font";
-  opacity: 100;
-  font-size: 10vh;
-}
-
-.titleFont {
-  transition: 400ms all;
-  font-family: "highspeed-font";
-  opacity: 100;
-  font-size: 10rem;
-}
-
 .entranceText {
   position: fixed;
   inset: 0;
   width: fit-content;
   height: fit-content;
   margin: auto;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
 }
 
 @keyframes move {
@@ -114,14 +69,6 @@ html,
   100% {
     opacity: 1;
   }
-}
-
-.backIn {
-  animation: backInAnimation 3s linear forwards;
-}
-
-.backOut {
-  animation: backInAnimation 0.3s linear reverse forwards;
 }
 
 @keyframes letterAnimation {
@@ -255,8 +202,8 @@ html,
 }
 
 .item-info-header {
-  margin-right: 1rem; /* Add space between the items to prevent overlap */
-  width: 50%; /* Split width equally between items */
+  margin-right: 1rem;
+  width: 50%;
   transition: 400ms all;
   font-family: "helvetica";
   opacity: 100;
@@ -288,25 +235,25 @@ html,
 }
 
 section {
-  width: 100%; /* Ensure the entire section takes full width */
-  display: block; /* Ensure block layout, so elements expand to fill the container */
-  height: 10vh; /* Adjust height as per your requirements */
-  white-space: nowrap; /* Prevent wrapping of text */
-  overflow: hidden; /* Ensures that the content doesn't overflow and overlap */
+  width: 100%;
+  display: block;
+  height: 10vh;
+  white-space: nowrap;
+  overflow: hidden;
   pointer-events: none;
 }
 
 .full-billboard {
-  width: 300%; /* Sufficient width to display all scroll items */
-  display: flex; /* Use flexbox layout */
-  flex-wrap: nowrap; /* Ensure no wrapping occurs */
-  animation: move 11s linear infinite; /* Apply scrolling animation */
+  width: 300%;
+  display: flex;
+  flex-wrap: nowrap;
+  animation: move 11s linear infinite;
   pointer-events: none;
 }
 
 .single-billboard {
-  margin-right: 1rem; /* Add space between the items to prevent overlap */
-  width: 50%; /* Split width equally between items */
+  margin-right: 1rem;
+  width: 50%;
   text-align: center;
   transition: 400ms all;
   font-family: "highspeed-font";
@@ -317,7 +264,6 @@ section {
   pointer-events: none;
 }
 
-/* FOOTER */
 .footer-container {
   display: flex;
   flex-direction: row;
@@ -326,7 +272,7 @@ section {
   font-size: 1.8vw;
   font-family: "helvetica";
   position: fixed;
-  bottom: 1.5rem /* 24px */;
+  bottom: 1.5rem;
   right: 0.5rem;
   z-index: 50;
   animation: grillEntranceAnimation 2s cubic-bezier(0, -0.01, 0, 1) forwards;
@@ -343,7 +289,6 @@ section {
   cursor: cell;
 }
 
-/* NAVIGATION */
 .nav-container {
   display: flex;
   position: absolute;
@@ -351,7 +296,7 @@ section {
   justify-content: space-between;
   top: 2rem;
   width: 100%;
-  padding-left: 1.25rem /* 20px */;
+  padding-left: 1.25rem;
   padding-right: 1.25rem;
   z-index: 100;
 }
@@ -364,16 +309,14 @@ section {
   font-family: "pixelated";
   font-size: 2vw;
   cursor: cell;
-  /* animation-fill-mode: forwards; */
   text-shadow: 0px 0px 5px rgba(255, 255, 255, 1);
   justify-content: center;
-  /* animation: backInAnimation 1s linear forwards; */
 }
 
 .header-container {
   position: absolute;
-  top: 2rem; /* Position at the top of the screen */
-  width: auto; /* Full width */
+  top: 2rem;
+  width: auto;
   display: flex;
   justify-content: center;
   cursor: pointer;
@@ -381,17 +324,11 @@ section {
   transition: all 2s ease-out;
 }
 
-.header-container-click {
-  transition: all 1s ease-out;
-  transform: translateX(-40%);
-}
-
 .header {
   font-family: "helvetica";
   font-size: 2vw;
   color: black;
   text-shadow: 0px 0px 5px rgba(255, 255, 255, 1);
-  
 }
 
 .nav-item-anim {
@@ -402,31 +339,6 @@ section {
 .nav-item-anim-rev {
   animation: fadeInCredsRev 0.5s ease-in-out forwards;
   animation-delay: 0.05s;
-}
-
-.nav-item-creds {
-  color: black;
-  transition: all 0.3s ease-in-out;
-  font-family: "helvetica";
-  font-size: 2.4vw;
-  cursor: cell;
-  pointer-events: none;
-  animation: fadeInCreds 1s linear forwards;
-  opacity: 0;
-  text-shadow: 0px 0px 5px rgba(255, 255, 255, 1);
-}
-
-.nav-item-creds-details {
-  color: black;
-  transition: all 0.3s ease-in-out;
-  font-family: "helvetica";
-  font-size: 1.2vw;
-  cursor: cell;
-  pointer-events: none;
-  animation: fadeInCredsDetails 1s linear forwards;
-  opacity: 0;
-  animation-fill-mode: forwards;
-  text-shadow: 0px 0px 5px rgba(255, 255, 255, 1);
 }
 
 @keyframes fadeInCreds {
@@ -473,9 +385,7 @@ section {
   }
 }
 
-.nav-item:hover,
-.nav-item-creds:hover,
-.nav-item-creds-details:hover {
+.nav-item:hover {
   color: salmon;
 }
 
@@ -495,14 +405,15 @@ section {
   text-align: left;
 }
 
-.cute-thing{
+.cute-thing {
   opacity: 0;
   font-family: "helvetica";
   font-size: 4vw;
   text-shadow: 0px 0px 5px rgba(255, 255, 255, 1);
   color: #fa8072;
 }
-.anim-bottom{
+
+.anim-bottom {
   animation: fadeInCredsDetails 1s linear forwards;
   animation-delay: 2s;
 }

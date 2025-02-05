@@ -1,7 +1,5 @@
-import Popper from "@mui/material/Popper";
-import Box from "@mui/material/Box";
-import Typewriter from "typewriter-effect";
 import { useState } from "react";
+import { wrapTextWithSpans } from "../functions/wrapTextWithSpans";
 
 export const InfoPopup = () => {
   const [clicked, setClicked] = useState(false);
@@ -10,18 +8,6 @@ export const InfoPopup = () => {
   const text2 = "BAM";
 
   const [headerText, setHeaderText] = useState(text2);
-
-  function wrapTextWithSpans(text) {
-    return text.split(" ").map((word, index) => (
-      <span
-        key={`${word}-${index}`}
-        className="word"
-        style={{ "--index": index }}
-      >
-        {word}&nbsp;
-      </span>
-    ));
-  }
 
   const handleClick = () => {
     setClicked(!clicked);
