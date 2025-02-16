@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import items from "./items.json";
 
 export default function LandingPage() {
-  useGLTF.preload(items[0].src);
+  useGLTF.preload(items[0].src, true);
   return (
     <>
       <Link to="/works">

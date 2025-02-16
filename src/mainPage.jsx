@@ -26,7 +26,7 @@ export default function Details() {
   useEffect(() => {
     const next = items[itemIndex + 1];
     if (next) {
-      useGLTF.preload(next.src);
+      useGLTF.preload(next.src, true);
     }
   }, [itemIndex]);
 
