@@ -9,14 +9,16 @@ import { useSpring, animated, config } from "@react-spring/three";
 Model.propTypes = {
   src: PropTypes.string,
   name: PropTypes.string,
+  onZoom: PropTypes.func,
 };
 
 GrillCanvas.propTypes = {
   src: PropTypes.string,
   name: PropTypes.string,
+  onZoom: PropTypes.func,
 };
 
-function Model({ src, name }) {
+function Model({ src, name, onZoom }) {
   const { nodes } = useGLTF(src);
   const mesh = useRef();
   const [dummy] = useState(() => new THREE.Object3D());
@@ -32,6 +34,16 @@ function Model({ src, name }) {
       setSize(size.x);
     }
   }, [nodes]);
+
+  useEffect(() => {
+    if (isMouseOver && !clicked) {
+      document.body.className = "cursor-zoom-in";
+    } else if (isMouseOver && clicked) {
+      document.body.className = "cursor-zoom-out";
+    } else {
+      document.body.className = "";
+    }
+  }, [clicked, isMouseOver]);
 
   function setScale() {
     const multiplier = size < 2 ? 6 : 1;
@@ -73,20 +85,23 @@ function Model({ src, name }) {
       material={nodes[name].material}
       scale={scale}
       position={position}
-      onClick={() => setClicked(!clicked)}
+      onClick={() => {
+        onZoom();
+        setClicked(!clicked);
+      }}
       onPointerEnter={() => setIsMouseOver(true)}
       onPointerLeave={() => setIsMouseOver(false)}
     ></animated.mesh>
   );
 }
 
-export function GrillCanvas({ src, name }) {
+export function GrillCanvas({ src, name, onZoom }) {
   return (
     <Canvas className="logo h-full" camera={{ position: [0, 10, 3] }}>
       <Bounds clip observe margin={1.2}>
         <ambientLight />
         <directionalLight position={[10, 10, 10]} />
-        <Model src={src} name={name} />
+        <Model src={src} name={name} onZoom={onZoom} />
       </Bounds>
     </Canvas>
   );
