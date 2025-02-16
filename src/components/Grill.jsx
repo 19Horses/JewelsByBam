@@ -34,7 +34,7 @@ function Model({ src, name }) {
   }, [nodes]);
 
   function setScale() {
-    const multiplier = size < 2 ? 8 : 1;
+    const multiplier = size < 2 ? 6 : 1;
     const scale = 7 * multiplier;
     if (clicked) {
       return scale + 1;
@@ -49,7 +49,7 @@ function Model({ src, name }) {
 
   const { scale, position } = useSpring({
     scale: setScale(),
-    position: clicked ? [0, -2, 0] : [-4, -3, 0],
+    position: clicked ? [0, -2, 0] : [-6, -3, 0],
     config: config.gentle,
   });
 
