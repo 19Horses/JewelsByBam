@@ -45,7 +45,12 @@ export default function Details() {
         >
           {previousItem && <p> {"← " + previousItem.title}</p>}
         </div>
-
+        <div
+          className={`header-container ${bioClick ? "px-5" : ""}`}
+          onClick={() => setBioClick(!bioClick)}
+        >
+          <InfoPopup />
+        </div>
         <div
           className={`nav-item right ${
             !animatingIn && !animatingOut ? "" : "pointer-events-none"
@@ -76,19 +81,12 @@ export default function Details() {
           height: "100vh",
         }}
       >
-        <div
-          className={`header-container ${bioClick ? "px-5" : ""}`}
-          onClick={() => setBioClick(!bioClick)}
-        >
-          <InfoPopup />
-        </div>
-
+        <NavButtons />
         <div
           className={` w-full h-full relative transition-all duration-500 ${
             bioClick ? "blur-md pointer-events-none" : ""
           }`}
         >
-          <NavButtons />
           <div className={`billboard-container ${isMobile ? "mobile" : ""}`}>
             <section className={`h-full`}>
               <div className={`full-billboard`}>
@@ -145,11 +143,7 @@ export default function Details() {
                     }
                   }}
                 >
-                  <GrillCanvas
-                    key={currentItem.title}
-                    name={currentItem.name}
-                    src={currentItem.src}
-                  />
+                  <GrillCanvas name={currentItem.name} src={currentItem.src} />
                 </div>
               }
             </Suspense>

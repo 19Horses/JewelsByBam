@@ -319,9 +319,10 @@ section {
 
 .nav-container {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   position: absolute;
   transition: all 0.3s ease-in-out;
-  justify-content: space-between;
   top: 2rem;
   width: 100%;
   padding-left: 1.25rem;
@@ -346,11 +347,7 @@ section {
 }
 
 .header-container {
-  position: absolute;
-  top: 2rem;
   width: auto;
-  display: flex;
-  justify-content: center;
   cursor: pointer;
   z-index: 9999;
   transition: all 2s ease-out;

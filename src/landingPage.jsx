@@ -1,4 +1,4 @@
-import { Splat, OrbitControls } from "@react-three/drei";
+import { OrbitControls, Splat } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Link } from "react-router-dom";
 
