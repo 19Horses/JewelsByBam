@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import { useRef, useState, useEffect } from "react";
 import * as THREE from "three";
 import { useSpring, animated, config } from "@react-spring/three";
+import { isMobile } from "react-device-detect";
 
 Model.propTypes = {
   src: PropTypes.string,
@@ -59,9 +60,19 @@ function Model({ src, name, onZoom }) {
     return scale;
   }
 
+  function setPosition() {
+    if (isMobile) {
+      return [0, -2, 0];
+    } else if (clicked) {
+      return [0, -2, 0];
+    } else {
+      return [-6, -3, 0];
+    }
+  }
+
   const { scale, position } = useSpring({
     scale: setScale(),
-    position: clicked ? [0, -2, 0] : [-6, -3, 0],
+    position: setPosition(),
     config: config.gentle,
   });
 
