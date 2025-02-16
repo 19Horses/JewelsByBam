@@ -1,11 +1,11 @@
+import { animated, config, useSpring } from "@react-spring/three";
 import { Bounds, useGLTF } from "@react-three/drei";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { easing } from "maath";
 import PropTypes from "prop-types";
-import { useRef, useState, useEffect } from "react";
-import * as THREE from "three";
-import { useSpring, animated, config } from "@react-spring/three";
+import { useEffect, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
+import * as THREE from "three";
 
 Model.propTypes = {
   src: PropTypes.string,
@@ -108,12 +108,10 @@ function Model({ src, name, onZoom }) {
 
 export function GrillCanvas({ src, name, onZoom }) {
   return (
-    <Canvas className="logo h-full" camera={{ position: [0, 10, 3] }}>
-      <Bounds clip observe margin={1.2}>
-        <ambientLight />
-        <directionalLight position={[10, 10, 10]} />
-        <Model src={src} name={name} onZoom={onZoom} />
-      </Bounds>
-    </Canvas>
+    <Bounds clip observe margin={1.2}>
+      <ambientLight />
+      <directionalLight position={[10, 10, 10]} />
+      <Model src={src} name={name} onZoom={onZoom} />
+    </Bounds>
   );
 }
