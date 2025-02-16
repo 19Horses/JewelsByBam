@@ -1,11 +1,13 @@
 import { useGLTF } from "@react-three/drei";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { Canvas } from "@react-three/fiber";
+import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { Footer } from "./components/footer";
 import { itemSwitch } from "./functions/menuFunctionality";
 import { wrapTextWithSpans } from "./functions/wrapTextWithSpans";
 import items from "./items.json";
 import { NavBar } from "./NavBar";
+import { GrillCanvas } from "./components/Grill";
 
 export default function Details() {
   const [itemIndex, setItemIndex] = useState(0);
@@ -74,41 +76,17 @@ export default function Details() {
               {wrapTextWithSpans(currentItem.grillMaterial)}
             </p>
           </div>
-          <div className={`grill-object ${isMobile ? "mobile" : ""} `}>
-            {
-              <div
-                className={`grill-object  ${animatingIn ? "grills-in" : ""} ${
-                  animatingOut ? "grills-out" : ""
-                } 
-                  ${
-                    !animatingIn && !animatingOut
-                      ? "pointer-events-auto"
-                      : "pointer-events-none "
-                  }
-                   `}
-                onAnimationEnd={() => {
-                  if (animatingOut) {
-                    setAnimatingOut(false);
-                  } else if (animatingIn) {
-                    setAnimatingIn(false);
-                  }
-                }}
-              >
-                {/* <Canvas
-                  className="logo h-full"
-                  camera={{ position: [0, 10, 3] }}
-                >
-                  <Suspense fallback={null}>
-                    <GrillCanvas
-                      name={currentItem.name}
-                      src={currentItem.src}
-                      onZoom={() => setZoomedOut(!zoomedOut)}
-                    />
-                  </Suspense>
-                </Canvas> */}
-              </div>
-            }
-          </div>
+          <Canvas className="logo h-full" camera={{ position: [0, 10, 3] }}>
+            <Suspense fallback={null}>
+              <GrillCanvas
+                name={currentItem.name}
+                src={currentItem.src}
+                onZoom={() => setZoomedOut(!zoomedOut)}
+                setAnimatingIn={setAnimatingIn}
+                setAnimatingOut={setAnimatingOut}
+              />
+            </Suspense>
+          </Canvas>
           <Footer />
         </div>
       </div>

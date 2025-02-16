@@ -30,9 +30,7 @@ export function NavBar({
   return (
     <div className="nav-container">
       <div
-        className={`nav-item left ${
-          !animatingIn && !animatingOut ? "" : "pointer-events-none"
-        }
+        className={`nav-item left 
           ${zoomedOut ? "" : "nav-item-anim-rev"} ${
           animatingOut ? "nav-item-anim" : ""
         } ${animatingIn ? "enter-from-left" : ""} ${isMobile ? "mobile" : ""}
@@ -45,9 +43,7 @@ export function NavBar({
       </div>
       <InfoPopup />
       <div
-        className={`nav-item right ${
-          !animatingIn && !animatingOut ? "" : "pointer-events-none"
-        }
+        className={`nav-item right 
           ${zoomedOut ? "" : "nav-item-anim"} ${
           animatingOut ? "nav-item-anim-rev" : ""
         } ${animatingIn ? "enter-from-right" : ""} ${isMobile ? "mobile" : ""}

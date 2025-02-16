@@ -63,9 +63,12 @@ function Model({ src, name, onZoom }) {
   function setPosition() {
     if (isMobile) {
       return [0, -2, 0];
-    } else if (clicked) {
+    }
+
+    if (clicked) {
       return [0, -2, 0];
     }
+
     return [-6, -3, 0];
   }
 
