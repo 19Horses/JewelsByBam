@@ -363,6 +363,10 @@ section {
   backdrop-filter: blur(10px);
 }
 
+.modal.mobile {
+  font-size: 6vw;
+}
+
 .header {
   font-family: "helvetica";
   font-size: 2vw;
