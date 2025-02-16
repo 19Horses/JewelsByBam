@@ -1,9 +1,7 @@
 import { useGLTF } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import { Suspense, useCallback, useMemo, useState, useEffect } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { Footer } from "./components/footer";
-import { GrillCanvas } from "./components/Grill";
 import { itemSwitch } from "./functions/menuFunctionality";
 import { wrapTextWithSpans } from "./functions/wrapTextWithSpans";
 import items from "./items.json";
@@ -96,7 +94,7 @@ export default function Details() {
                   }
                 }}
               >
-                <Canvas
+                {/* <Canvas
                   className="logo h-full"
                   camera={{ position: [0, 10, 3] }}
                 >
@@ -107,7 +105,7 @@ export default function Details() {
                       onZoom={() => setZoomedOut(!zoomedOut)}
                     />
                   </Suspense>
-                </Canvas>
+                </Canvas> */}
               </div>
             }
           </div>
