@@ -198,7 +198,7 @@ html,
   transition-duration: 150ms;
   position: fixed;
   width: 50%;
-  z-index: 60;
+  z-index: 1;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
@@ -360,7 +360,7 @@ section {
   width: 100vw;
   overflow-y: scroll;
   z-index: 9999;
-  /* backdrop-filter: blur(10px); */
+  backdrop-filter: blur(10px);
 }
 
 .header {
