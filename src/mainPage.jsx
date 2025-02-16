@@ -24,7 +24,10 @@ export default function Details() {
   }, []);
 
   useEffect(() => {
-    useGLTF.preload(items[itemIndex + 1].src);
+    const next = items[itemIndex + 1];
+    if (next) {
+      useGLTF.preload(next.src);
+    }
   }, [itemIndex]);
 
   return (
@@ -73,11 +76,7 @@ export default function Details() {
               {wrapTextWithSpans(currentItem.grillMaterial)}
             </p>
           </div>
-          <div
-            className={`grill-object ${
-              zoomedOut ? "zoomed-out" : "zoomed-in"
-            } ${isMobile ? "mobile" : ""} `}
-          >
+          <div className={`grill-object ${isMobile ? "mobile" : ""} `}>
             {
               <div
                 className={`grill-object  ${animatingIn ? "grills-in" : ""} ${
