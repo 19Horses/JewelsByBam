@@ -1,70 +1,25 @@
-import { Suspense, useMemo, useState } from "react";
+import { Suspense, useCallback, useMemo, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { Footer } from "./components/footer";
 import { GrillCanvas } from "./components/Grill";
-import { InfoPopup } from "./components/infoPopup";
 import { itemSwitch } from "./functions/menuFunctionality";
 import { wrapTextWithSpans } from "./functions/wrapTextWithSpans";
 import items from "./items.json";
+import { NavBar } from "./NavBar";
 
 export default function Details() {
   const [itemIndex, setItemIndex] = useState(0);
   const [animatingIn, setAnimatingIn] = useState(true);
   const [animatingOut, setAnimatingOut] = useState(false);
   const [zoomedOut, setZoomedOut] = useState(true);
-  const [bioClick, setBioClick] = useState(false);
 
   const currentItem = useMemo(() => {
     return items[itemIndex];
   }, [itemIndex]);
 
-  const previousItem = useMemo(() => {
-    return itemIndex > 0 ? items[itemIndex - 1] : null;
-  }, [itemIndex]);
-
-  const nextItem = useMemo(() => {
-    return itemIndex < items.length - 1 ? items[itemIndex + 1] : null;
-  }, [itemIndex]);
-
-  function NavButtons() {
-    return (
-      <div className={`nav-container`}>
-        <div
-          className={`nav-item left ${
-            !animatingIn && !animatingOut ? "" : "pointer-events-none"
-          }
-            ${zoomedOut ? "" : "nav-item-anim-rev"} ${
-            animatingOut ? "nav-item-anim" : ""
-          } ${animatingIn ? "enter-from-left" : ""} ${isMobile ? "mobile" : ""}
-            `}
-          onClick={() => {
-            itemSwitch(setAnimatingOut, setAnimatingIn, () =>
-              setItemIndex(itemIndex - 1)
-            );
-          }}
-        >
-          {previousItem && <p> {"← " + previousItem.title}</p>}
-        </div>
-
-        <div
-          className={`nav-item right ${
-            !animatingIn && !animatingOut ? "" : "pointer-events-none"
-          }
-            ${zoomedOut ? "" : "nav-item-anim"} ${
-            animatingOut ? "nav-item-anim-rev" : ""
-          } ${animatingIn ? "enter-from-right" : ""} ${isMobile ? "mobile" : ""}
-            `}
-          onClick={() => {
-            itemSwitch(setAnimatingOut, setAnimatingIn, () =>
-              setItemIndex(itemIndex + 1)
-            );
-          }}
-        >
-          {nextItem && <p>{nextItem.title + " →"}</p>}
-        </div>
-      </div>
-    );
-  }
+  const onNav = useCallback((newIndex) => {
+    itemSwitch(setAnimatingOut, setAnimatingIn, () => setItemIndex(newIndex));
+  }, []);
 
   return (
     <>
@@ -76,19 +31,14 @@ export default function Details() {
           height: "100vh",
         }}
       >
-        <div
-          className={`header-container ${bioClick ? "px-5" : ""}`}
-          onClick={() => setBioClick(!bioClick)}
-        >
-          <InfoPopup />
-        </div>
-
-        <div
-          className={` w-full h-full relative transition-all duration-500 ${
-            bioClick ? "blur-md pointer-events-none" : ""
-          }`}
-        >
-          <NavButtons />
+        <NavBar
+          itemIndex={itemIndex}
+          onNav={onNav}
+          animatingIn={animatingIn}
+          animatingOut={animatingOut}
+          zoomedOut={zoomedOut}
+        />
+        <div className={` w-full h-full relative transition-all duration-500`}>
           <div className={`billboard-container ${isMobile ? "mobile" : ""}`}>
             <section className={`h-full`}>
               <div className={`full-billboard`}>
@@ -146,7 +96,7 @@ export default function Details() {
                   }}
                 >
                   <GrillCanvas
-                    key={currentItem.title}
+                    key={currentItem.name}
                     name={currentItem.name}
                     src={currentItem.src}
                   />

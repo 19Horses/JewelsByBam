@@ -198,7 +198,7 @@ html,
   transition-duration: 150ms;
   position: fixed;
   width: 50%;
-  z-index: 60;
+  z-index: 1;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
@@ -319,14 +319,15 @@ section {
 
 .nav-container {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   position: absolute;
   transition: all 0.3s ease-in-out;
-  justify-content: space-between;
   top: 2rem;
   width: 100%;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
-  z-index: 100;
+  z-index: 3;
 }
 
 .nav-item {
@@ -346,14 +347,24 @@ section {
 }
 
 .header-container {
-  position: absolute;
-  top: 2rem;
   width: auto;
-  display: flex;
-  justify-content: center;
   cursor: pointer;
-  z-index: 9999;
   transition: all 2s ease-out;
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: scroll;
+  z-index: 9999;
+  backdrop-filter: blur(10px);
+}
+
+.modal.mobile {
+  font-size: 6vw;
 }
 
 .header {
