@@ -108,12 +108,10 @@ function Model({ src, name, onZoom }) {
 
 export function GrillCanvas({ src, name, onZoom }) {
   return (
-    <Canvas className="logo h-full" camera={{ position: [0, 10, 3] }}>
-      <Bounds clip observe margin={1.2}>
-        <ambientLight />
-        <directionalLight position={[10, 10, 10]} />
-        <Model src={src} name={name} onZoom={onZoom} />
-      </Bounds>
-    </Canvas>
+    <Bounds clip observe margin={1.2}>
+      <ambientLight />
+      <directionalLight position={[10, 10, 10]} />
+      <Model src={src} name={name} onZoom={onZoom} />
+    </Bounds>
   );
 }

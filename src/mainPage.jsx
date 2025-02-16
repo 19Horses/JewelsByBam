@@ -1,3 +1,4 @@
+import { Canvas } from "@react-three/fiber";
 import { Suspense, useCallback, useMemo, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { Footer } from "./components/footer";
@@ -92,12 +93,17 @@ export default function Details() {
                     }
                   }}
                 >
-                  <GrillCanvas
+                  <Canvas
                     key={currentItem.name}
-                    name={currentItem.name}
-                    src={currentItem.src}
-                    onZoom={() => setZoomedOut(!zoomedOut)}
-                  />
+                    className="logo h-full"
+                    camera={{ position: [0, 10, 3] }}
+                  >
+                    <GrillCanvas
+                      name={currentItem.name}
+                      src={currentItem.src}
+                      onZoom={() => setZoomedOut(!zoomedOut)}
+                    />
+                  </Canvas>
                 </div>
               }
             </Suspense>
