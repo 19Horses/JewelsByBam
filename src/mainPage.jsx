@@ -75,17 +75,14 @@ export default function Details() {
             <Suspense fallback={null}>
               {
                 <div
-                  onClick={() => {
-                    setZoomedOut(!zoomedOut);
-                  }}
                   className={`grill-object  ${animatingIn ? "grills-in" : ""} ${
                     animatingOut ? "grills-out" : ""
                   } 
-                  ${zoomedOut ? "cursor-zoom-in" : "cursor-zoom-out"} ${
-                    !animatingIn && !animatingOut
-                      ? "pointer-events-auto"
-                      : "pointer-events-none "
-                  }
+                   ${
+                     !animatingIn && !animatingOut
+                       ? "pointer-events-auto"
+                       : "pointer-events-none "
+                   }
                   `}
                   onAnimationEnd={() => {
                     if (animatingOut) {
@@ -99,6 +96,7 @@ export default function Details() {
                     key={currentItem.name}
                     name={currentItem.name}
                     src={currentItem.src}
+                    onZoom={() => setZoomedOut(!zoomedOut)}
                   />
                 </div>
               }

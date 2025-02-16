@@ -97,37 +97,6 @@ html,
   z-index: 20;
 }
 
-.grill-object.zoomed-out {
-  transform: translateX(-33.333333%);
-  --tw-scale-x: 1;
-  --tw-scale-y: 1;
-}
-
-.grill-object.zoomed-out.mobile {
-  transform: translateX(0%);
-  --tw-scale-x: 0.8;
-  --tw-scale-y: 0.8;
-}
-
-.grill-object.zoomed-in {
-  --tw-scale-x: 1.25;
-  --tw-scale-y: 1.25;
-  transform: translateX(0%) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.grill-object.zoomed-out:hover {
-  --tw-scale-x: 1.25;
-  --tw-scale-y: 1.25;
-  transform: translateX(-33.333333%) scaleX(var(--tw-scale-x))
-    scaleY(var(--tw-scale-y));
-}
-
-.grill-object.zoomed-out.mobile:hover {
-  --tw-scale-x: 1;
-  --tw-scale-y: 1;
-  transform: scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
 .grill-object.grills-in {
   animation: grillEntranceAnimation 2s cubic-bezier(0, -0.01, 0, 1) forwards;
   pointer-events: none;
