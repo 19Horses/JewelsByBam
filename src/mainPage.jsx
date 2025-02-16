@@ -49,12 +49,12 @@ export default function Details() {
         />
         <div className={` w-full h-full relative transition-all duration-500`}>
           <div className={`billboard-container ${isMobile ? "mobile" : ""}`}>
-            {/* <section className={`h-full`}>
+            <section className={`h-full`}>
               <div className={`full-billboard`}>
                 <p className="single-billboard">{currentItem.title}</p>
                 <p className="single-billboard">{currentItem.title}</p>
               </div>
-            </section> */}
+            </section>
           </div>
           <div
             className={`item-info-container ${
