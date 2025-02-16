@@ -1,4 +1,5 @@
-import { Canvas, useGLTF } from "@react-three/fiber";
+import { useGLTF } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
 import { Suspense, useCallback, useMemo, useState, useEffect } from "react";
 import { isMobile } from "react-device-detect";
 import { Footer } from "./components/footer";
