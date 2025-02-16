@@ -28,6 +28,16 @@ function Model({ src, name, onZoom }) {
   const [clicked, setClicked] = useState(false);
   const [size, setSize] = useState();
 
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (mesh.current) {
+      setTimeout(() => {
+        setVisible(true);
+      }, 500);
+    }
+  }, [nodes]);
+
   useEffect(() => {
     if (mesh.current) {
       const bbox = new THREE.Box3().setFromObject(mesh.current);
@@ -65,6 +75,8 @@ function Model({ src, name, onZoom }) {
       return [0, -2, 0];
     } else if (clicked) {
       return [0, -2, 0];
+    } else if (!visible) {
+      return [-50, -3, 0];
     }
     return [-6, -3, 0];
   }
