@@ -1,8 +1,10 @@
-import { OrbitControls, Splat } from "@react-three/drei";
+import { OrbitControls, Splat, useGLTF } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Link } from "react-router-dom";
+import items from "./items.json";
 
 export default function LandingPage() {
+  useGLTF.preload(items[0].src);
   return (
     <>
       <Link to="/works">

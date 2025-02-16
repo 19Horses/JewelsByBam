@@ -1,5 +1,5 @@
-import { Canvas } from "@react-three/fiber";
-import { Suspense, useCallback, useMemo, useState } from "react";
+import { Canvas, useGLTF } from "@react-three/fiber";
+import { Suspense, useCallback, useMemo, useState, useEffect } from "react";
 import { isMobile } from "react-device-detect";
 import { Footer } from "./components/footer";
 import { GrillCanvas } from "./components/Grill";
@@ -21,6 +21,10 @@ export default function Details() {
   const onNav = useCallback((newIndex) => {
     itemSwitch(setAnimatingOut, setAnimatingIn, () => setItemIndex(newIndex));
   }, []);
+
+  useEffect(() => {
+    useGLTF.preload(items[itemIndex + 1].src);
+  }, [itemIndex]);
 
   return (
     <>
@@ -73,40 +77,39 @@ export default function Details() {
               zoomedOut ? "zoomed-out" : "zoomed-in"
             } ${isMobile ? "mobile" : ""} `}
           >
-            <Suspense fallback={null}>
-              {
-                <div
-                  className={`grill-object  ${animatingIn ? "grills-in" : ""} ${
-                    animatingOut ? "grills-out" : ""
-                  } 
-                   ${
-                     !animatingIn && !animatingOut
-                       ? "pointer-events-auto"
-                       : "pointer-events-none "
-                   }
-                  `}
-                  onAnimationEnd={() => {
-                    if (animatingOut) {
-                      setAnimatingOut(false);
-                    } else if (animatingIn) {
-                      setAnimatingIn(false);
-                    }
-                  }}
+            {
+              <div
+                className={`grill-object  ${animatingIn ? "grills-in" : ""} ${
+                  animatingOut ? "grills-out" : ""
+                } 
+                  ${
+                    !animatingIn && !animatingOut
+                      ? "pointer-events-auto"
+                      : "pointer-events-none "
+                  }
+                   `}
+                onAnimationEnd={() => {
+                  if (animatingOut) {
+                    setAnimatingOut(false);
+                  } else if (animatingIn) {
+                    setAnimatingIn(false);
+                  }
+                }}
+              >
+                <Canvas
+                  className="logo h-full"
+                  camera={{ position: [0, 10, 3] }}
                 >
-                  <Canvas
-                    key={currentItem.name}
-                    className="logo h-full"
-                    camera={{ position: [0, 10, 3] }}
-                  >
+                  <Suspense fallback={null}>
                     <GrillCanvas
                       name={currentItem.name}
                       src={currentItem.src}
                       onZoom={() => setZoomedOut(!zoomedOut)}
                     />
-                  </Canvas>
-                </div>
-              }
-            </Suspense>
+                  </Suspense>
+                </Canvas>
+              </div>
+            }
           </div>
           <Footer />
         </div>
