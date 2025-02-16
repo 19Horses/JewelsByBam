@@ -1,9 +1,7 @@
 import { useGLTF } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import { Suspense, useCallback, useMemo, useState, useEffect } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { Footer } from "./components/footer";
-import { GrillCanvas } from "./components/Grill";
 import { itemSwitch } from "./functions/menuFunctionality";
 import { wrapTextWithSpans } from "./functions/wrapTextWithSpans";
 import items from "./items.json";
@@ -49,12 +47,12 @@ export default function Details() {
         />
         <div className={` w-full h-full relative transition-all duration-500`}>
           <div className={`billboard-container ${isMobile ? "mobile" : ""}`}>
-            {/* <section className={`h-full`}>
+            <section className={`h-full`}>
               <div className={`full-billboard`}>
                 <p className="single-billboard">{currentItem.title}</p>
                 <p className="single-billboard">{currentItem.title}</p>
               </div>
-            </section> */}
+            </section>
           </div>
           <div
             className={`item-info-container ${
@@ -96,7 +94,7 @@ export default function Details() {
                   }
                 }}
               >
-                <Canvas
+                {/* <Canvas
                   className="logo h-full"
                   camera={{ position: [0, 10, 3] }}
                 >
@@ -107,7 +105,7 @@ export default function Details() {
                       onZoom={() => setZoomedOut(!zoomedOut)}
                     />
                   </Suspense>
-                </Canvas>
+                </Canvas> */}
               </div>
             }
           </div>

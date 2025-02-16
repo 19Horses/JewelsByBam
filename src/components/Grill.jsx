@@ -65,9 +65,8 @@ function Model({ src, name, onZoom }) {
       return [0, -2, 0];
     } else if (clicked) {
       return [0, -2, 0];
-    } else {
-      return [-6, -3, 0];
     }
+    return [-6, -3, 0];
   }
 
   const { scale, position } = useSpring({
