@@ -20,7 +20,7 @@ GrillCanvas.propTypes = {
 };
 
 function Model({ src, name, onZoom }) {
-  const { nodes } = useGLTF(src);
+  const { nodes } = useGLTF(src, true);
   const mesh = useRef();
   const [dummy] = useState(() => new THREE.Object3D());
   const { pointer } = useThree();
@@ -96,6 +96,8 @@ function Model({ src, name, onZoom }) {
       receiveShadow
       geometry={nodes[name].geometry}
       material={nodes[name].material}
+      // geometry={nodes.Pumpkin.geometry}
+      // material={materials.Pumpkin_mat}
       scale={scale}
       position={position}
       onClick={() => {
