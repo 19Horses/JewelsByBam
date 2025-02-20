@@ -9,19 +9,17 @@ import * as THREE from "three";
 
 Model.propTypes = {
   src: PropTypes.string,
-  name: PropTypes.string,
   onZoom: PropTypes.func,
 };
 
 GrillCanvas.propTypes = {
   src: PropTypes.string,
-  name: PropTypes.string,
   onZoom: PropTypes.func,
 };
 
-function Model({ src, name, onZoom }) {
+function Model({ src, onZoom }) {
   const { nodes } = useGLTF(src, true);
-  const mesh = useRef();
+  const meshRef = useRef();
   const [dummy] = useState(() => new THREE.Object3D());
   const { pointer } = useThree();
   const [isMouseOver, setIsMouseOver] = useState(false);
@@ -29,8 +27,8 @@ function Model({ src, name, onZoom }) {
   const [size, setSize] = useState();
 
   useEffect(() => {
-    if (mesh.current) {
-      const bbox = new THREE.Box3().setFromObject(mesh.current);
+    if (meshRef.current) {
+      const bbox = new THREE.Box3().setFromObject(meshRef.current);
       const size = bbox.getSize(new THREE.Vector3());
       setSize(size.x);
     }
@@ -86,18 +84,18 @@ function Model({ src, name, onZoom }) {
     } else {
       dummy.lookAt(0, 0, 1);
     }
-    easing.dampQ(mesh.current.quaternion, dummy.quaternion, 0.15, dt);
+    easing.dampQ(meshRef.current.quaternion, dummy.quaternion, 0.15, dt);
   });
+
+  const mesh = Object.values(nodes).filter((node) => node.isMesh)[0];
 
   return (
     <animated.mesh
-      ref={mesh}
+      ref={meshRef}
       castShadow
       receiveShadow
-      geometry={nodes[name].geometry}
-      material={nodes[name].material}
-      // geometry={nodes.Pumpkin.geometry}
-      // material={materials.Pumpkin_mat}
+      geometry={mesh.geometry}
+      material={mesh.material}
       scale={scale}
       position={position}
       onClick={() => {
@@ -110,12 +108,12 @@ function Model({ src, name, onZoom }) {
   );
 }
 
-export function GrillCanvas({ src, name, onZoom }) {
+export function GrillCanvas({ src, onZoom }) {
   return (
     <Bounds clip observe margin={1.2}>
       <ambientLight />
       <directionalLight position={[10, 10, 10]} />
-      <Model src={src} name={name} onZoom={onZoom} />
+      <Model src={src} onZoom={onZoom} />
     </Bounds>
   );
 }
