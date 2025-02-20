@@ -76,11 +76,7 @@ export default function Details() {
               {wrapTextWithSpans(currentItem.grillMaterial)}
             </p>
           </div>
-          <div
-            className={`grill-object ${
-              zoomedOut ? "zoomed-out" : "zoomed-in"
-            } ${isMobile ? "mobile" : ""} `}
-          >
+          <div className={`grill-object ${isMobile ? "mobile" : ""} `}>
             {
               <div
                 className={`grill-object  ${animatingIn ? "grills-in" : ""} ${
@@ -103,6 +99,7 @@ export default function Details() {
                 <Canvas
                   className="logo h-full"
                   camera={{ position: [0, 10, 3] }}
+                  onCreated={(state) => console.log(state)}
                 >
                   <Suspense fallback={null}>
                     <GrillCanvas
