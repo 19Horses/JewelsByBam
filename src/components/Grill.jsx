@@ -44,19 +44,16 @@ function Model({ src, onZoom }) {
     }
   }, [clicked, isMouseOver]);
 
-  function setScale() {
-    const multiplier = size < 2 ? 6 : 1;
-    const scale = 7 * multiplier;
-    if (clicked) {
-      return scale + 1;
-    }
-
+  useFrame((state, dt) => {
+    const step = 0.1;
+    state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, 50, step);
     if (isMouseOver) {
-      return scale + 0.4;
+      dummy.lookAt(pointer.x, pointer.y, 1);
+    } else {
+      dummy.lookAt(0, 0, 1);
     }
-
-    return scale;
-  }
+    easing.dampQ(meshRef.current.quaternion, dummy.quaternion, 0.15, dt);
+  });
 
   function setPosition() {
     if (isMobile) {
@@ -70,21 +67,24 @@ function Model({ src, onZoom }) {
     return [-6, -3, 0];
   }
 
+  function setScale() {
+    const multiplier = size < 2 ? (size < 1 ? 8 : 5) : 1;
+    const scale = 8 * multiplier;
+    if (clicked) {
+      return scale + 1;
+    }
+
+    if (isMouseOver) {
+      return scale + 0.4;
+    }
+
+    return scale;
+  }
+
   const { scale, position } = useSpring({
     scale: setScale(),
     position: setPosition(),
     config: config.gentle,
-  });
-
-  useFrame((state, dt) => {
-    const step = 0.1;
-    state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, 50, step);
-    if (isMouseOver) {
-      dummy.lookAt(pointer.x, pointer.y, 1);
-    } else {
-      dummy.lookAt(0, 0, 1);
-    }
-    easing.dampQ(meshRef.current.quaternion, dummy.quaternion, 0.15, dt);
   });
 
   const mesh = Object.values(nodes).filter((node) => node.isMesh)[0];

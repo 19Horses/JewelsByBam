@@ -76,14 +76,41 @@ export default function Details() {
               {wrapTextWithSpans(currentItem.grillMaterial)}
             </p>
           </div>
-          <Canvas className="logo h-full" camera={{ position: [0, 10, 3] }}>
-            <Suspense fallback={null}>
-              <GrillCanvas
-                src={currentItem.src}
-                onZoom={() => setZoomedOut(!zoomedOut)}
-              />
-            </Suspense>
-          </Canvas>
+          <div className={`grill-object ${isMobile ? "mobile" : ""} `}>
+            {
+              <div
+                className={`grill-object  ${animatingIn ? "grills-in" : ""} ${
+                  animatingOut ? "grills-out" : ""
+                } 
+                  ${
+                    !animatingIn && !animatingOut
+                      ? "pointer-events-auto"
+                      : "pointer-events-none "
+                  }
+                   `}
+                onAnimationEnd={() => {
+                  if (animatingOut) {
+                    setAnimatingOut(false);
+                  } else if (animatingIn) {
+                    setAnimatingIn(false);
+                  }
+                }}
+              >
+                <Canvas
+                  className="logo h-full"
+                  camera={{ position: [0, 10, 3] }}
+                  onCreated={(state) => console.log(state)}
+                >
+                  <Suspense fallback={null}>
+                    <GrillCanvas
+                      src={currentItem.src}
+                      onZoom={() => setZoomedOut(!zoomedOut)}
+                    />
+                  </Suspense>
+                </Canvas>
+              </div>
+            }
+          </div>
           <Footer />
         </div>
       </div>
