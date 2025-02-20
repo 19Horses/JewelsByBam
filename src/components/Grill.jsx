@@ -69,7 +69,7 @@ function Model({ src, onZoom }) {
 
   function setScale() {
     const multiplier = size < 2 ? (size < 1 ? 9 : 7) : 1;
-    const scale = 10 * multiplier;
+    const scale = (isMobile ? 5 : 10) * multiplier;
     if (clicked) {
       return scale + 1;
     }
