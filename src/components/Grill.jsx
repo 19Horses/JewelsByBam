@@ -4,7 +4,6 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { easing } from "maath";
 import PropTypes from "prop-types";
 import { useEffect, useRef, useState } from "react";
-import { isMobile } from "react-device-detect";
 import * as THREE from "three";
 
 Model.propTypes = {
@@ -44,8 +43,19 @@ function Model({ src, onZoom }) {
     }
   }, [clicked, isMouseOver]);
 
+  useFrame((state, dt) => {
+    const step = 0.1;
+    state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, 50, step);
+    if (isMouseOver) {
+      dummy.lookAt(pointer.x, pointer.y, 1);
+    } else {
+      dummy.lookAt(0, 0, 1);
+    }
+    easing.dampQ(meshRef.current.quaternion, dummy.quaternion, 0.15, dt);
+  });
+
   function setScale() {
-    const multiplier = size < 2 ? 6 : 1;
+    const multiplier = size < 2 ? (size < 1 ? 8 : 5) : 1;
     const scale = 7 * multiplier;
     if (clicked) {
       return scale + 1;
@@ -58,33 +68,9 @@ function Model({ src, onZoom }) {
     return scale;
   }
 
-  function setPosition() {
-    if (isMobile) {
-      return [0, -2, 0];
-    }
-
-    if (clicked) {
-      return [0, -2, 0];
-    }
-
-    return [-6, -3, 0];
-  }
-
-  const { scale, position } = useSpring({
+  const { scale } = useSpring({
     scale: setScale(),
-    position: setPosition(),
     config: config.gentle,
-  });
-
-  useFrame((state, dt) => {
-    const step = 0.1;
-    state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, 50, step);
-    if (isMouseOver) {
-      dummy.lookAt(pointer.x, pointer.y, 1);
-    } else {
-      dummy.lookAt(0, 0, 1);
-    }
-    easing.dampQ(meshRef.current.quaternion, dummy.quaternion, 0.15, dt);
   });
 
   const mesh = Object.values(nodes).filter((node) => node.isMesh)[0];
@@ -97,7 +83,6 @@ function Model({ src, onZoom }) {
       geometry={mesh.geometry}
       material={mesh.material}
       scale={scale}
-      position={position}
       onClick={() => {
         onZoom();
         setClicked(!clicked);
@@ -110,7 +95,7 @@ function Model({ src, onZoom }) {
 
 export function GrillCanvas({ src, onZoom }) {
   return (
-    <Bounds clip observe margin={1.2}>
+    <Bounds fit clip observe margin={1.2}>
       <ambientLight />
       <directionalLight position={[10, 10, 10]} />
       <Model src={src} onZoom={onZoom} />

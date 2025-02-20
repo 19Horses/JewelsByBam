@@ -76,7 +76,11 @@ export default function Details() {
               {wrapTextWithSpans(currentItem.grillMaterial)}
             </p>
           </div>
-          <div className={`grill-object ${isMobile ? "mobile" : ""} `}>
+          <div
+            className={`grill-object ${
+              zoomedOut ? "zoomed-out" : "zoomed-in"
+            } ${isMobile ? "mobile" : ""} `}
+          >
             {
               <div
                 className={`grill-object  ${animatingIn ? "grills-in" : ""} ${
