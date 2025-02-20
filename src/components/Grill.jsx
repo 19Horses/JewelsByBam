@@ -68,8 +68,8 @@ function Model({ src, onZoom }) {
   }
 
   function setScale() {
-    const multiplier = size < 2 ? (size < 1 ? 8 : 5) : 1;
-    const scale = 8 * multiplier;
+    const multiplier = size < 2 ? (size < 1 ? 9 : 7) : 1;
+    const scale = 10 * multiplier;
     if (clicked) {
       return scale + 1;
     }
