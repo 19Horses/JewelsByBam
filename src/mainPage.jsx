@@ -94,11 +94,7 @@ export default function Details() {
               }
             }}
           >
-            <Canvas
-              className="logo h-full"
-              camera={{ position: [0, 10, 3] }}
-              onCreated={(state) => console.log(state)}
-            >
+            <Canvas className="logo h-full" camera={{ position: [0, 10, 3] }}>
               <Suspense fallback={null}>
                 <GrillCanvas
                   src={currentItem.src}
