@@ -2,72 +2,54 @@
   {
     "id": 0,
     "src": "./6_10_2024.glb",
-    "name": "mesh_0",
-    "material": "mesh_0",
     "title": "WIRE 6 SET",
     "grillMaterial": "Made from recycled 925 Sterling Silver"
   },
   {
     "id": 1,
     "src": "./6_10_2024_2.glb",
-    "name": "mesh_0",
-    "material": "mesh_0",
     "title": "ANKH DOUBLE CAP",
     "grillMaterial": "Made from recycled 9ct Yellow Gold "
   },
   {
     "id": 2,
     "src": "./7_10_2024_2.glb",
-    "name": "mesh_0",
-    "material": "mesh_0",
     "title": "STRETCHY STAR",
     "grillMaterial": "Made from recycled 925 Sterling Silver"
   },
   {
     "id": 3,
     "src": "./7_10_2024.glb",
-    "name": "mesh_0",
-    "material": "mesh_0",
     "title": "BABY BOW FRONT",
     "grillMaterial": "Made from recycled 925 Sterling Silver"
   },
   {
     "id": 4,
     "src": "./06_01_2025.glb",
-    "name": "mesh_0",
-    "material": "mesh_0",
     "title": "DUAL WINDOW BAR ",
     "grillMaterial": "Made from recycled 925 Sterling Silver"
   },
   {
     "id": 5,
     "src": "./06_01_2025_2.glb",
-    "name": "mesh_0",
-    "material": "mesh_0",
     "title": "STAR CUTOUT CAP",
     "grillMaterial": "made from recycled 925 Sterling Silver"
   },
   {
     "id": 6,
     "src": "./07_01_2025.glb",
-    "name": "mesh_0",
-    "material": "mesh_0",
     "title": "GUMMY PENDANTS",
     "grillMaterial": "Made from recycled 925 Sterling Silver and ethically sourced Baby Pink Sapphires"
   },
   {
     "id": 7,
     "src": "./07_01_2025_2.glb",
-    "name": "mesh_0",
-    "material": "mesh_0",
     "title": "RUBY BUBBLE RING",
     "grillMaterial": "Made from recycled 925 Sterling Silver and ethically sourced Ruby Gemstone"
   },
   {
     "id": 8,
     "src": "./07_01_2025_3.glb",
-    "name": "mesh_0",
-    "material": "mesh_0",
     "title": "AMULET PENDANT",
     "grillMaterial": "Made from recycled 925 Sterling Silver and ethically sourced Baby Pink Sapphire"
   }
