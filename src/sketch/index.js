@@ -7,7 +7,7 @@ export function sketch(p5) {
     for (let x = 0; x < p5.width - 0; x += 10) {
       for (let y = 0; y < p5.height - 0; y += 10) {
         pts.push({ x, y });
-        p5.fill("red");
+        p5.fill("salmon");
         p5.circle(x, y, 1.25);
       }
     }
@@ -20,7 +20,7 @@ export function sketch(p5) {
     for (let x = 0; x < p5.width - 0; x += 10) {
       for (let y = 0; y < p5.height - 0; y += 10) {
         pts.push({ x, y });
-        p5.fill("red");
+        p5.fill("salmon");
         p5.circle(x, y, 1.25);
       }
     }
