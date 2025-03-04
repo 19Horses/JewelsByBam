@@ -7,7 +7,6 @@ export function sketch(p5) {
     for (let x = 0; x < p5.width - 0; x += 10) {
       for (let y = 0; y < p5.height - 0; y += 10) {
         pts.push({ x, y });
-        // p5.circle(x, y, 1.25);
       }
     }
   };
@@ -18,8 +17,8 @@ export function sketch(p5) {
       const d = p5.dist(p5.mouseX, p5.mouseY, x, y);
       const sz = p5.map(d, 0, 400, 3, 1.25);
       const csz = p5.constrain(sz, 1.25, 3);
-      const alpha = p5.map(d, 0, 400, 150, 100); 
-      p5.fill(250, 128, 114, alpha); 
+      const alpha = p5.map(d, 0, 400, 150, 100);
+      p5.fill(250, 128, 114, alpha);
       p5.circle(x, y, csz);
     });
   };
