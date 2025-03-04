@@ -41,7 +41,12 @@ export function NavBar({
           onNav(itemIndex - 1);
         }}
       >
-        {previousItem && <p> {"← " + previousItem.title}</p>}
+        {previousItem && (
+          <>
+            <p>← </p>
+            <p> {previousItem.title}</p>
+          </>
+        )}
       </div>
       <InfoPopup />
       <div
@@ -56,7 +61,12 @@ export function NavBar({
           onNav(itemIndex + 1);
         }}
       >
-        {nextItem && <p>{nextItem.title + " →"}</p>}
+        {nextItem && (
+          <>
+            <p> {nextItem.title}</p>
+            <p> →</p>
+          </>
+        )}
       </div>
     </div>
   );

@@ -64,7 +64,7 @@ function Model({ src, onZoom }) {
       return [0, -2, 0];
     }
 
-    return [-6, -3, 0];
+    return [-8, -6, -1];
   }
 
   function setScale() {
