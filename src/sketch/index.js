@@ -15,10 +15,11 @@ export function sketch(p5) {
   p5.draw = () => {
     p5.background(255);
     pts.forEach(({ x, y }) => {
-      p5.fill("salmon");
       const d = p5.dist(p5.mouseX, p5.mouseY, x, y);
       const sz = p5.map(d, 0, 400, 3, 1.25);
       const csz = p5.constrain(sz, 1.25, 3);
+      const alpha = p5.map(d, 0, 400, 150, 100); // Adjust the alpha value based on distance
+      p5.fill(250, 128, 114, alpha); // RGBA color with variable alpha
       p5.circle(x, y, csz);
     });
   };
