@@ -477,3 +477,10 @@ section {
   animation: fadeInCredsDetails 1s linear forwards;
   animation-delay: 2s;
 }
+
+.react-p5-wrapper {
+  z-index: -9999;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
