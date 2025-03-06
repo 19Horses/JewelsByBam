@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import { useMemo } from "react";
 import { isMobile } from "react-device-detect";
-import { InfoPopup } from "./components/infoPopup";
 import items from "./items.json";
+import { Link } from "react-router-dom";
 
 NavBar.propTypes = {
   animatingIn: PropTypes.bool,
@@ -48,7 +48,11 @@ export function NavBar({
           </>
         )}
       </div>
-      <InfoPopup />
+      <Link to="/">
+        <p className={`header ${isMobile ? "mobile" : ""} header-container`}>
+          BAM
+        </p>
+      </Link>
       <div
         className={`nav-item right ${
           !animatingIn && !animatingOut ? "" : "pointer-events-none"

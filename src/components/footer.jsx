@@ -5,11 +5,6 @@ export const Footer = () => {
   return (
     <div className={`footer-container ${isMobile ? "mobile" : ""}`}>
       <div className="footer-item">
-        <Link to="/" className="footer-item">
-          home
-        </Link>
-      </div>
-      <div className="footer-item">
         <a
           href="https://www.instagram.com/jewelsbybam/"
           className="footer-item"
