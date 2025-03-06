@@ -50,7 +50,7 @@ export function NavBar({
       </div>
       <Link to="/">
         <p className={`header ${isMobile ? "mobile" : ""} header-container`}>
-          BAM
+          Jewels by Bam
         </p>
       </Link>
       <div

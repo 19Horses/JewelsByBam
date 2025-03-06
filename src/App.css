@@ -340,8 +340,9 @@ section {
 }
 
 .header {
-  font-family: "helvetica";
-  font-size: 2vw;
+  font-family:"Pixels";
+  font-style: italic;
+  font-size: 4vw;
   color: black;
   text-shadow: 0px 0px 5px rgba(255, 255, 255, 1);
 }
