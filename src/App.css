@@ -513,3 +513,34 @@ section {
   top: 0;
   left: 0;
 }
+
+.bottom-nav {
+  position: fixed;
+  bottom: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 60vw;
+  /* height: 50px; */
+  /* background-color: rgba(255, 255, 255, 0.8); */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bottom-nav-item {
+  font-family: "Pixels";
+  /* color: salmon; */
+  font-size: 4vw;
+  cursor: pointer;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.bottom-nav-item::selection {
+  background-color: transparent;
+}
+
+.bottom-nav-item.selected {
+  outline: 1px solid salmon;
+  border-radius: 5px;
+}

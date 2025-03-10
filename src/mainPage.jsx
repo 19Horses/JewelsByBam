@@ -8,6 +8,7 @@ import { itemSwitch } from "./functions/menuFunctionality";
 import { wrapTextWithSpans } from "./functions/wrapTextWithSpans";
 import items from "./items.json";
 import { NavBar } from "./NavBar";
+import { BottomNav } from "./components/BottomNav";
 
 export default function Details() {
   const [itemIndex, setItemIndex] = useState(0);
@@ -105,6 +106,7 @@ export default function Details() {
           </div>
           <Footer />
         </div>
+        {!isMobile && <BottomNav itemIndex={itemIndex} onNav={onNav} />}
       </div>
     </>
   );
