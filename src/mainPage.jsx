@@ -1,13 +1,13 @@
 import { useGLTF } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { Footer } from "./components/footer";
+import { GrillCanvas } from "./components/Grill";
 import { itemSwitch } from "./functions/menuFunctionality";
 import { wrapTextWithSpans } from "./functions/wrapTextWithSpans";
 import items from "./items.json";
 import { NavBar } from "./NavBar";
-import { GrillCanvas } from "./components/Grill";
 
 export default function Details() {
   const [itemIndex, setItemIndex] = useState(0);
@@ -95,12 +95,10 @@ export default function Details() {
             }}
           >
             <Canvas className="logo h-full" camera={{ position: [0, 10, 3] }}>
-              <Suspense fallback={null}>
-                <GrillCanvas
-                  src={currentItem.src}
-                  onZoom={() => setZoomedOut(!zoomedOut)}
-                />
-              </Suspense>
+              <GrillCanvas
+                src={currentItem.src}
+                onZoom={() => setZoomedOut(!zoomedOut)}
+              />
             </Canvas>
           </div>
           <Footer />
