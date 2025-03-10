@@ -324,23 +324,8 @@ section {
   transition: all 2s ease-out;
 }
 
-.modal {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  overflow-y: scroll;
-  z-index: 9999;
-  backdrop-filter: blur(10px);
-}
-
-.modal.mobile {
-  font-size: 6vw;
-}
-
 .header {
-  font-family:"Pixels";
+  font-family: "Pixels";
   font-style: italic;
   font-size: 4vw;
   color: black;
@@ -436,19 +421,6 @@ section {
   }
 }
 
-@keyframes fadeInCredsDetails {
-  0% {
-    opacity: 0;
-  }
-  60% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
 .nav-item:hover {
   color: salmon;
 }
@@ -469,19 +441,6 @@ section {
 .left {
   text-align: left;
   justify-content: flex-start;
-}
-
-.cute-thing {
-  opacity: 0;
-  font-family: "helvetica";
-  font-size: 4vw;
-  text-shadow: 0px 0px 5px rgba(255, 255, 255, 1);
-  color: #fa8072;
-}
-
-.anim-bottom {
-  animation: fadeInCredsDetails 1s linear forwards;
-  animation-delay: 2s;
 }
 
 .react-p5-wrapper {
