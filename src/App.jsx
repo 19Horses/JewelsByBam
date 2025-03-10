@@ -8,7 +8,11 @@ import { sketch } from "./sketch";
 function App() {
   return (
     <>
-      <Router>
+      <Router
+        future={{
+          v7_startTransition: true,
+        }}
+      >
         <Routes key={location.pathname}>
           <Route path="/" exact element={<LandingPage />} />
           <Route path="/works" element={<Details />} />
