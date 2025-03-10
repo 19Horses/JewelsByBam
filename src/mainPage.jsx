@@ -79,7 +79,9 @@ export default function Details() {
           <div
             className={`grill-object ${isMobile ? "mobile" : ""} ${
               animatingIn ? "grills-in" : ""
-            } ${animatingOut ? "grills-out" : ""} 
+            } ${zoomedOut && !animatingIn ? "zoomed-out" : "zoomed-in"} ${
+              animatingOut ? "grills-out" : ""
+            } 
                   ${
                     !animatingIn && !animatingOut
                       ? "pointer-events-auto"
