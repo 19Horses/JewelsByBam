@@ -15,12 +15,10 @@ export function sketch(p5) {
     p5.background(255);
     pts.forEach(({ x, y }) => {
       const d = p5.dist(p5.mouseX, p5.mouseY, x, y);
-      const sz = p5.map(d, 0, 400, 3, 1.25);
-      const csz = p5.constrain(sz, 1.25, 3);
-      const alpha = p5.map(d, 0, 400, 180, 130);
-      const calpha = p5.constrain(alpha, 130, 180);
-      p5.fill(250, 128, 114, calpha);
-      p5.circle(x, y, csz);
+      const sz = p5.map(d, 0, 400, 3, 1.25, true);
+      const alpha = p5.map(d, 0, 400, 180, 130, true);
+      p5.fill(250, 128, 114, alpha);
+      p5.circle(x, y, sz);
     });
   };
 
