@@ -165,9 +165,6 @@ html,
     opacity: 1;
     transform: translateX(-33.333333%);
   }
-  5% {
-    opacity: 1;
-  }
   50% {
     opacity: 0;
   }
@@ -193,9 +190,6 @@ html,
   0% {
     opacity: 1;
     transform: translateX(0%);
-  }
-  5% {
-    opacity: 1;
   }
   50% {
     opacity: 0;
