@@ -5,6 +5,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { useState } from "react";
 import { Vector3 } from "three";
 import items from "./items.json";
+import { isMobile } from "react-device-detect";
 
 export default function LandingPage() {
   useGLTF.preload(items[0].src, true);
@@ -15,7 +16,9 @@ export default function LandingPage() {
   const CameraController = () => {
     useFrame(({ camera }, delta) => {
       const targetPosition = isZoomedOut
-        ? new Vector3(3, 3, 3)
+        ? isMobile
+          ? new Vector3(1, 5, 4)
+          : new Vector3(3, 3, 3)
         : new Vector3(1, 1, 2);
       const targetLookAt = isZoomedOut
         ? new Vector3(0, 0, 0)
@@ -37,19 +40,29 @@ export default function LandingPage() {
         <primitive position={[0, 1, 0]} object={gltf.scene} />
       </Canvas>
       <button
-        className={`toggle ${isZoomedOut ? "" : "in"}`}
+        className={`toggle ${isMobile ? "mobile" : ""} ${
+          isZoomedOut ? "" : "in"
+        }`}
         onClick={() => setIsZoomedOut(!isZoomedOut)}
       >
         ↓
       </button>
       {total === loaded ? (
         <Link to="/works">
-          <p className={`loading-text ${isZoomedOut ? "" : "in"}`}>
+          <p
+            className={`loading-text ${isMobile ? "mobile" : ""} ${
+              isZoomedOut ? "" : "in"
+            }`}
+          >
             Enter studio
           </p>
         </Link>
       ) : (
-        <p className={`loading-text ${isZoomedOut ? "" : "in"}`}>
+        <p
+          className={`loading-text ${isMobile ? "mobile" : ""} ${
+            isZoomedOut ? "" : "in"
+          }`}
+        >
           Loading studio: {Math.floor(progress)}%
         </p>
       )}

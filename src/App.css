@@ -459,10 +459,16 @@ section {
   color: black;
   font-size: 2.5rem;
   transition: all 0.3s ease-in-out;
+  width: 100%;
+  text-align: center;
 }
 
 .loading-text.in {
   color: salmon;
+}
+
+.loading-text.mobile {
+  font-size: 2.2rem;
 }
 
 .toggle {
@@ -484,12 +490,10 @@ section {
 
 .toggle.in {
   background-color: salmon;
-  /* color: black; */
   transform: rotate(180deg);
 }
 
-.toggle:hover {
-  width: 50px;
-  height: 50px;
-  font-size: 1.3rem;
+.toggle.mobile {
+  width: 40px;
+  height: 40px;
 }
