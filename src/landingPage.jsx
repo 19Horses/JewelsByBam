@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Vector3 } from "three";
 import items from "./items.json";
 import { isMobile } from "react-device-detect";
-import pixels from "../public/PerfectoCalligraphy.ttf";
+import pixels from "./fonts/PerfectoCalligraphy.ttf";
 
 export default function LandingPage() {
   useGLTF.preload(items[0].src, true);

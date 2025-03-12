@@ -11,25 +11,25 @@ html,
 
 @font-face {
   font-family: "Pixels";
-  src: url("/PerfectoCalligraphy.ttf");
+  src: url("fonts/PerfectoCalligraphy.ttf");
   font-display: swap;
 }
 
 @font-face {
   font-family: "highspeed-font";
-  src: url("/HIGHSPEED.TTF");
+  src: url("fonts/HIGHSPEED.TTF");
   font-display: swap;
 }
 
 @font-face {
   font-family: "helvetica";
-  src: url("/Helvetica-Bold.woff");
+  src: url("fonts/Helvetica-Bold.woff");
   font-display: swap;
 }
 
 @font-face {
   font-family: "pixelated";
-  src: url("/PixeloidSans-mLxMm.woff");
+  src: url("fonts/PixeloidSans-mLxMm.woff");
   font-display: swap;
 }
 
