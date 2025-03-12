@@ -79,9 +79,7 @@ export default function Details() {
           <div
             className={`grill-object ${isMobile ? "mobile" : ""} ${
               animatingIn ? "grills-in" : ""
-            } ${zoomedOut && !animatingIn ? "zoomed-out" : "zoomed-in"} ${
-              animatingOut ? "grills-out" : ""
-            } 
+            } ${animatingOut ? "grills-out" : ""} 
                   ${
                     !animatingIn && !animatingOut
                       ? "pointer-events-auto"
@@ -99,6 +97,7 @@ export default function Details() {
             <Canvas className="logo h-full" camera={{ position: [0, 10, 3] }}>
               <GrillCanvas
                 src={currentItem.src}
+                scale={currentItem.scale}
                 onZoom={() => setZoomedOut(!zoomedOut)}
               />
             </Canvas>

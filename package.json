@@ -15,6 +15,7 @@
     "@emotion/styled": "^11.13.0",
     "@mui/material": "^6.3.0",
     "@p5-wrapper/react": "^4.4.2",
+    "@react-spring/three": "^9.7.5",
     "@react-three/drei": "^9.114.3",
     "@react-three/fiber": "^8.17.10",
     "@types/three": "^0.173.0",
