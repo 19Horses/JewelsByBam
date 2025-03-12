@@ -44,10 +44,14 @@ export default function LandingPage() {
       </button>
       {total === loaded ? (
         <Link to="/works">
-          <p className="loading-text">Enter studio</p>
+          <p className={`loading-text ${isZoomedOut ? "" : "in"}`}>
+            Enter studio
+          </p>
         </Link>
       ) : (
-        <p className="loading-text">Loading studio: {Math.floor(progress)}%</p>
+        <p className={`loading-text ${isZoomedOut ? "" : "in"}`}>
+          Loading studio: {Math.floor(progress)}%
+        </p>
       )}
     </>
   );

@@ -458,16 +458,11 @@ section {
   transform: translateX(-50%);
   color: black;
   font-size: 2.5rem;
+  transition: all 0.3s ease-in-out;
 }
 
 .loading-text.in {
-  font-family: "highspeed-font";
-  position: fixed;
-  bottom: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  color: black;
-  font-size: 2.5rem;
+  color: salmon;
 }
 
 .toggle {
@@ -488,8 +483,8 @@ section {
 }
 
 .toggle.in {
-  background-color: white;
-  color: black;
+  background-color: salmon;
+  /* color: black; */
   transform: rotate(180deg);
 }
 
