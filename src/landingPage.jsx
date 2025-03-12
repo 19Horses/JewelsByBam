@@ -1,4 +1,4 @@
-import { OrbitControls, useGLTF, useProgress } from "@react-three/drei";
+import { OrbitControls, Text, useGLTF, useProgress } from "@react-three/drei";
 import { Canvas, useLoader, useFrame } from "@react-three/fiber";
 import { Link } from "react-router-dom";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Vector3 } from "three";
 import items from "./items.json";
 import { isMobile } from "react-device-detect";
+import pixels from "../public/PerfectoCalligraphy.ttf";
 
 export default function LandingPage() {
   useGLTF.preload(items[0].src, true);
@@ -37,6 +38,14 @@ export default function LandingPage() {
         <ambientLight />
         <directionalLight position={[10, 10, 10]} />
         <OrbitControls enableZoom={false} />
+        <Text
+          color="salmon"
+          font={pixels}
+          fontSize={0.1}
+          position={[-0.7, 1, -1.2]}
+        >
+          {"Bambi"}
+        </Text>
         <primitive position={[0, 1, 0]} object={gltf.scene} />
       </Canvas>
       <button
