@@ -449,3 +449,13 @@ section {
   top: 0;
   left: 0;
 }
+
+.loading-text {
+  font-family: "highspeed-font";
+  position: fixed;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: black;
+  font-size: 2rem;
+}
