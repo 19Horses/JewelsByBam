@@ -13,20 +13,28 @@ export default function LandingPage() {
   const gltf = useLoader(GLTFLoader, "./studio.glb");
   const { progress, loaded, total } = useProgress();
   const [isZoomedOut, setIsZoomedOut] = useState(true);
+  const [doneTransitioning, setDoneTransitioning] = useState(false);
 
   const CameraController = () => {
     useFrame(({ camera }, delta) => {
+      const targetLookAt = isZoomedOut
+        ? new Vector3(0, 0, 0)
+        : new Vector3(0, 1, 0);
+      camera.lookAt(targetLookAt);
+
+      if (doneTransitioning) {
+        return;
+      }
       const targetPosition = isZoomedOut
         ? isMobile
           ? new Vector3(1, 5, 4)
           : new Vector3(3, 3, 3)
         : new Vector3(1, 1, 2);
-      const targetLookAt = isZoomedOut
-        ? new Vector3(0, 0, 0)
-        : new Vector3(0, 1, 0);
 
       camera.position.lerp(targetPosition, delta * 3);
-      camera.lookAt(targetLookAt);
+      if (camera.position.distanceTo(targetPosition) < 0.05) {
+        setDoneTransitioning(true);
+      }
     });
     return null;
   };
@@ -52,7 +60,10 @@ export default function LandingPage() {
         className={`toggle ${isMobile ? "mobile" : ""} ${
           isZoomedOut ? "" : "in"
         }`}
-        onClick={() => setIsZoomedOut(!isZoomedOut)}
+        onClick={() => {
+          setDoneTransitioning(false);
+          setIsZoomedOut(!isZoomedOut);
+        }}
       >
         ↓
       </button>
