@@ -24,7 +24,7 @@ export function sketch(p5) {
 
   p5.windowResized = () => {
     pts = [];
-    p5.createCanvas(innerWidth, innerHeight);
+    p5.resizeCanvas(innerWidth, innerHeight);
     p5.noStroke();
 
     for (let x = 0; x < p5.width - 0; x += 10) {

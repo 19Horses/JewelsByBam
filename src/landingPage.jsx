@@ -45,11 +45,19 @@ export default function LandingPage() {
         <CameraController />
         <ambientLight />
         <directionalLight position={[10, 10, 10]} />
-        <OrbitControls enableZoom={false} />
+        <OrbitControls
+          enableZoom={false}
+          minPolarAngle={0}
+          maxPolarAngle={Math.PI / 2}
+          minAzimuthAngle={-Math.PI / 4}
+          maxAzimuthAngle={Math.PI / 4}
+          enablePan={doneTransitioning}
+          enableRotate={doneTransitioning}
+        />
         <Text
           color="salmon"
           font={pixels}
-          fontSize={0.1}
+          fontSize={0.15}
           position={[-0.7, 1, -1.2]}
         >
           {"Bambi"}
