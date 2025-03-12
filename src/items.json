@@ -9,7 +9,8 @@
     "id": 1,
     "src": "./6_10_2024_2.glb",
     "title": "ANKH DOUBLE CAP",
-    "grillMaterial": "Made from recycled 9ct Yellow Gold "
+    "grillMaterial": "Made from recycled 9ct Yellow Gold",
+    "scale": 1.2
   },
   {
     "id": 2,
@@ -27,7 +28,8 @@
     "id": 4,
     "src": "./06_01_2025.glb",
     "title": "DUAL WINDOW BAR ",
-    "grillMaterial": "Made from recycled 925 Sterling Silver"
+    "grillMaterial": "Made from recycled 925 Sterling Silver",
+    "scale": 1.2
   },
   {
     "id": 5,

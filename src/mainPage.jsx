@@ -97,6 +97,7 @@ export default function Details() {
             <Canvas className="logo h-full" camera={{ position: [0, 10, 3] }}>
               <GrillCanvas
                 src={currentItem.src}
+                scale={currentItem.scale}
                 onZoom={() => setZoomedOut(!zoomedOut)}
               />
             </Canvas>

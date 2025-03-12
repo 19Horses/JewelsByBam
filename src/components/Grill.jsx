@@ -9,15 +9,17 @@ import * as THREE from "three";
 
 Model.propTypes = {
   src: PropTypes.string,
+  scaleMultiplier: PropTypes.number || undefined,
   onZoom: PropTypes.func,
 };
 
 GrillCanvas.propTypes = {
   src: PropTypes.string,
+  scale: PropTypes.number || undefined,
   onZoom: PropTypes.func,
 };
 
-function Model({ src, onZoom }) {
+function Model({ src, scaleMultiplier, onZoom }) {
   const { nodes } = useGLTF(src, true);
   const meshRef = useRef();
   const [dummy] = useState(() => new THREE.Object3D());
@@ -59,9 +61,10 @@ function Model({ src, onZoom }) {
   }
 
   function setScale() {
-    const scale = (isMobile ? 5 : 10) * 1.2;
+    const multiplier = scaleMultiplier ? scaleMultiplier : 1;
+    const scale = (isMobile ? 5 : 10) * multiplier;
     if (clicked) {
-      return scale + 1.4;
+      return scale * 1.05;
     }
 
     if (isMouseOver) {
@@ -98,12 +101,12 @@ function Model({ src, onZoom }) {
   );
 }
 
-export function GrillCanvas({ src, onZoom }) {
+export function GrillCanvas({ src, scale, onZoom }) {
   return (
     <Bounds clip observe margin={1.2}>
       <ambientLight />
       <directionalLight position={[10, 10, 10]} />
-      <Model src={src} onZoom={onZoom} />
+      <Model src={src} onZoom={onZoom} scaleMultiplier={scale} />
     </Bounds>
   );
 }
