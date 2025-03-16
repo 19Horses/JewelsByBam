@@ -8,6 +8,7 @@ import { itemSwitch } from "./functions/menuFunctionality";
 import { wrapTextWithSpans } from "./functions/wrapTextWithSpans";
 import items from "./items.json";
 import { NavBar } from "./NavBar";
+import { Polaroid } from "./components/polaroid";
 
 export default function Details() {
   const [itemIndex, setItemIndex] = useState(0);
@@ -29,6 +30,14 @@ export default function Details() {
       useGLTF.preload(next.src, true);
     }
   }, [itemIndex]);
+
+  useEffect(() => {
+    const navItems = document.querySelectorAll(".bottom-nav-item");
+    navItems.forEach((item) => {
+      const randomRotation = Math.floor(Math.random() * 31) - 15;
+      item.style.transform = `rotate(${randomRotation}deg)`;
+    });
+  }, []);
 
   return (
     <>
@@ -98,11 +107,21 @@ export default function Details() {
               <GrillCanvas
                 src={currentItem.src}
                 scale={currentItem.scale}
-                onZoom={() => setZoomedOut(!zoomedOut)}
+                onZoom={() => {
+                  setZoomedOut(!zoomedOut);
+                }}
               />
             </Canvas>
           </div>
+
           <Footer />
+        </div>
+        <div
+          className={`bottom-nav hidden-bottom-nav ${
+            zoomedOut ? "" : "hidden-bn"
+          }`}
+        >
+          <Polaroid className="" itemIndex={itemIndex} onNav={onNav} />
         </div>
       </div>
     </>
