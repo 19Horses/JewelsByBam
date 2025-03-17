@@ -500,26 +500,48 @@ section {
   height: 40px;
 }
 
-@keyframes scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-100%);
-  }
-}
-
-.fallback-wrapper {
+.info {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
   display: flex;
-  position: absolute;
-  top: 50%;
-  left: 0px;
-  width: 100vw;
-  height: 50vh;
-  transform: translateY(-50%);
-  /* animation: scroll 10s linear infinite; */
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
 }
 
-.fallback-image {
-  height: 100%;
+.info > button {
+  background-color: black;
+  color: white;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-size: 1.2rem;
+}
+
+.info > button:hover,
+.info > button.clicked {
+  background-color: salmon;
+  color: black;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.info-text {
+  font-size: 1.1rem;
+  font-family: "helvetica";
+  color: black;
+  animation: fadeIn 0.3s ease-in-out forwards;
 }
