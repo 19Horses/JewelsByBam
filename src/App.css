@@ -330,6 +330,8 @@ section {
   font-size: 4vw;
   color: black;
   text-shadow: 0px 0px 5px rgba(255, 255, 255, 1);
+  flex: 1;
+  text-align: center;
 }
 
 .header.mobile {
@@ -496,4 +498,50 @@ section {
 .toggle.mobile {
   width: 40px;
   height: 40px;
+}
+
+.info {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.info > button {
+  background-color: black;
+  color: white;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-size: 1.2rem;
+}
+
+.info > button:hover,
+.info > button.clicked {
+  background-color: salmon;
+  color: black;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.info-text {
+  font-size: 1.1rem;
+  font-family: "helvetica";
+  color: black;
+  animation: fadeIn 0.3s ease-in-out forwards;
 }
