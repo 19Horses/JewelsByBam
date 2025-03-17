@@ -330,6 +330,8 @@ section {
   font-size: 4vw;
   color: black;
   text-shadow: 0px 0px 5px rgba(255, 255, 255, 1);
+  flex: 1;
+  text-align: center;
 }
 
 .header.mobile {
@@ -496,4 +498,28 @@ section {
 .toggle.mobile {
   width: 40px;
   height: 40px;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.fallback-wrapper {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 0px;
+  width: 100vw;
+  height: 50vh;
+  transform: translateY(-50%);
+  /* animation: scroll 10s linear infinite; */
+}
+
+.fallback-image {
+  height: 100%;
 }

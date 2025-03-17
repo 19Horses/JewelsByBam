@@ -1,5 +1,4 @@
 import { isMobile } from "react-device-detect";
-import { Link } from "react-router-dom";
 
 export const Footer = () => {
   return (
