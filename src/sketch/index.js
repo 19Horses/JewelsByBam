@@ -2,7 +2,7 @@ import items from "../items.json";
 
 export function sketch(p5, isError) {
   let pts = [];
-  const images = [];
+  let images = [];
   let xOffset = 10;
 
   p5.preload = () => {
@@ -36,11 +36,17 @@ export function sketch(p5, isError) {
     });
 
     if (isError) {
-      [...images, ...images].forEach((img, i) => {
-        const x = 200 + i * 400 - xOffset;
+      images.forEach((img, i) => {
+        let x = 200 + i * 400 - xOffset;
         const w = 450;
         const h = 400;
+
         p5.image(img, x, p5.height / 2, w, h);
+
+        if (x + w < 0) {
+          images.push(images.shift());
+          xOffset -= 400;
+        }
       });
       xOffset += 1;
     }

@@ -7,7 +7,10 @@ export const Fallback = () => {
   return (
     <>
       <div className="nav-container">
-        <p className={`header ${isMobile ? "mobile" : ""} header-container`}>
+        <p
+          className={`header ${isMobile ? "mobile" : ""} header-container`}
+          style={{ cursor: "auto" }}
+        >
           Jewels by Bam
         </p>
       </div>
