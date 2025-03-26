@@ -64,7 +64,7 @@ function Model({ src, scaleMultiplier, onZoom }) {
     const multiplier = scaleMultiplier ? scaleMultiplier : 1;
     const scale = (isMobile ? 7 : 10) * multiplier;
     if (clicked) {
-      return scale * 1.05;
+      return scale * (isMobile ? 1.2 : 1.05);
     }
 
     if (isMouseOver) {
